@@ -4,12 +4,19 @@ package com.domain;
 
 public class Produto {
 	
+	private int idProduto;
 	private String nomeProduto;
 	private String descricaoProduto;
 	private String imagemProduto;
 	private float precoProduto;
 	
-
+	
+	public int getIdProduto() {
+		return idProduto;
+	}
+	public void setIdProduto(int idProduto) {
+		this.idProduto = idProduto;
+	}
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
