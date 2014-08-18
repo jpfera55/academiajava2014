@@ -3,6 +3,8 @@ package com.impl.repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+//Bruno Monteiro -- 18/08/2014
+
 public class Conexao {
 	
 	private static String usuario = "root";
