@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.domain.Produto;
-import com.impl.service.InterfaceProduto;
+import com.interfaces.repository.InterfaceProduto;
 
 //Bruno Monteiro -- 18/11/2014
 
