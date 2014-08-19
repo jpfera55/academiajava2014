@@ -5,6 +5,7 @@ import java.util.List;
 import com.domain.Compra;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
+import com.domain.ProdutoVestuarioEEngrenagem;
 import com.exceptions.CompraException;
 import com.impl.repository.CompraRepositorio;
 import com.impl.repository.ProdutoCampingRepositorio;
@@ -40,30 +41,35 @@ public class Fachada {
 	
 	public void inserirProduto(Produto produto){
 		IProduto.inserirProduto(produto);
+		if (produto instanceof ProdutoCamping){
+			produto.setIdProduto(ProdutoRepositorio.chavePrimariaInserida);
+			IProdutoCamping.inserirProdutoCamping((ProdutoCamping) produto);
+		}else if (produto instanceof ProdutoVestuarioEEngrenagem){
+			
+		}
 	}
 	
 	public void deletarProduto(Produto produto){
+		if (produto instanceof ProdutoCamping){
+			IProdutoCamping.deletarProdutoCamping((ProdutoCamping) produto);
+		}else if (produto instanceof ProdutoVestuarioEEngrenagem){
+			
+		}
+		
 		IProduto.deletarProduto(produto);
 	}
 	
 	public void alterarProduto(Produto produto){
 		IProduto.alterarProduto(produto);
+		if(produto instanceof ProdutoCamping){
+			IProdutoCamping.alterarProdutoCamping((ProdutoCamping) produto);
+		}else if(produto instanceof ProdutoVestuarioEEngrenagem){
+			
+		}
 	}
 	
 	public List<Produto> listaProduto(){
 		return IProduto.listaDeProduto();
-	}
-	
-	public void inserirProduto(ProdutoCamping produto){
-		IProdutoCamping.inserirProdutoCamping(produto);
-	}
-	
-	public void deletarProduto(ProdutoCamping produto){		
-		IProdutoCamping.deletarProdutoCamping(produto);
-	}
-	
-	public void alterarProduto(ProdutoCamping produto){
-		IProdutoCamping.alterarProdutoCamping(produto);
 	}
 	
 	public List<ProdutoCamping> listaProdutoCamping(){

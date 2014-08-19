@@ -14,7 +14,7 @@ import com.interfaces.repository.InterfaceProduto;
 
 public class ProdutoRepositorio implements InterfaceProduto {
 
-	private int chavePrimariaInserida;
+	public static int chavePrimariaInserida;
 	
 	@Override
 	public void inserirProduto(Produto p) {
