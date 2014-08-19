@@ -24,10 +24,9 @@ public class ProdutoCampingRepositorio implements InterfaceProdutoCamping {
 
 			PreparedStatement pStmt = con.prepareStatement(
 					"INSERT INTO produtocamping (Product_Id, Product_registraction"
-							+ ") VALUE (?,?)",
-					PreparedStatement.RETURN_GENERATED_KEYS);
+							+ ") VALUE (?,?)");
 
-			pStmt.setInt(1, p.getIdProduto());
+			pStmt.setInt(1, ProdutoRepositorio.chavePrimariaInserida);
 			pStmt.setString(2, p.getRegistroDaAgenciaAmbiental());
 
 			pStmt.executeUpdate();
