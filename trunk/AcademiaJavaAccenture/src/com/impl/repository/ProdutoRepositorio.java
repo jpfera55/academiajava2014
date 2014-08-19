@@ -91,18 +91,19 @@ public class ProdutoRepositorio implements InterfaceProduto {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM ");
+			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM PRODUTO");
 
 			rs = pStmt.executeQuery();
 			
 			while (rs.next()) {
 				produto = new Produto();
 				
-				produto.setIdProduto(rs.getInt(""));
-				produto.setNomeProduto(rs.getString(""));
-				produto.setDescricaoProduto(rs.getString(""));
-				produto.setImagemProduto(rs.getString(""));
-				produto.setPrecoProduto(rs.getFloat(0));
+				produto.setIdProduto(rs.getInt("product_id"));
+				produto.setNomeProduto(rs.getString("product_name"));
+				produto.setDescricaoProduto(rs.getString("product_description"));
+				produto.setImagemProduto(rs.getString("product_image"));
+				produto.setPrecoProduto(rs.getFloat("product_price"));
+				produto.setTipoProduto(rs.getString("product_type"));
 				
 				lista.add(produto);
 			}

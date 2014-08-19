@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 public class Conexao {
 	
 	private static String usuario = "root";
-	private static String senha = "123";
-	private static String banco = "";
+	private static String senha = "abcd1234";
+	private static String banco = "ExtremeExploration";
 	private static String driveName = "com.mysql.jdbc.Driver";
 	private static String url = "jdbc:mysql://localhost:3306/" + banco;
 	

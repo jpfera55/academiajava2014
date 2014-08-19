@@ -1,7 +1,8 @@
-package com.domain;
+package com.fachada;
 
 import java.util.List;
 
+import com.domain.Produto;
 import com.impl.repository.ProdutoRepositorio;
 import com.interfaces.repository.InterfaceProduto;
 

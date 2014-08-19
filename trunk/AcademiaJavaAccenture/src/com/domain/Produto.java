@@ -9,6 +9,7 @@ public class Produto {
 	private String descricaoProduto;
 	private String imagemProduto;
 	private float precoProduto;
+	private String tipoProduto;
 	
 	
 	public int getIdProduto() {
@@ -40,6 +41,12 @@ public class Produto {
 	}
 	public void setPrecoProduto(float precoProduto) {
 		this.precoProduto = precoProduto;
+	}
+	public String getTipoProduto() {
+		return tipoProduto;
+	}
+	public void setTipoProduto(String tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 	
 }
