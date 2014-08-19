@@ -7,6 +7,7 @@
 <%@page import="com.domain.Produto"%>
 <%@page import="java.util.List"%>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,9 @@
 <title>Extreme</title>
 </head>
 <body>
-	<table border="1">
+	<ui:composition template="/Template.jsp">
+		<ui:define name="central">
+			<table border="1">
 		<tr>
 			<td>Id</td>
 			<td>Nome</td>
@@ -37,5 +40,7 @@
 			%>
 		
 	</table>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

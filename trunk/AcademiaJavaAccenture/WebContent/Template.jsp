@@ -36,7 +36,7 @@
 </div>
 
 <div id="central"></div>
-
+	<ui:insert name="central"/>
 </div>
 <div id="rodape"></div>
 
