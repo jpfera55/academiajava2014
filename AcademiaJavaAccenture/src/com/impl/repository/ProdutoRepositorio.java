@@ -112,7 +112,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-		return null;
+		return lista;
 	}
 	
 
