@@ -2,9 +2,21 @@ package com.domain;
 
 public class ContadoCliente {
 
-	private String nome,sobrenome, endereço1, endereço2, cidade, estado, cep , pais;
-    private int id;
-    
+	private String nome,sobrenome, endereço1, endereço2, cidade, estado, cep , pais, senha, email ;
+ 	private int id;
+    public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

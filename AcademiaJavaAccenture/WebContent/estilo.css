@@ -1,9 +1,10 @@
 @CHARSET "ISO-8859-1";
 
 * {
-	margin: 0px;
+	margin: auto px;
 	padding: 0px;
    background-color: #FFE4C4;
+   
    
 }
 
@@ -16,8 +17,10 @@ todos {
 }
 
 #cabecalho {
+
 	width: 1200px;
 	height: 100px;
+	
 }
 
 #cabecalho h1 {
@@ -25,6 +28,7 @@ todos {
 	font-size: 50px;
 	font-family: Arial;
 	font-weight: bold;
+	
 
 	color: #BC8F8F;
 	text-shadow: 0px 4px 0px #b2a98f 0px 14px 10px rgba(0, 0, 0, 0.15), 0px
@@ -32,10 +36,10 @@ todos {
 }
 
 #conteudo {
-	width: 1200px;
-	height: 450px;
+	margin: 100px;
+	width: 1000px;	
 	text-align: center;
-	background-color: #fff;
+	
 }
 
 #menu {
@@ -62,11 +66,25 @@ font-family: Arial;
 
 
 #central {
+	
 	width: 150px;
 	float: right;
 	height: 450px;
 }
+#tabela{
+		
+  background-color:bisque;
+  margin-top: 200px;
+  margin:auto;
 
+}
+
+#tabela td {
+	width:250px;
+	height:38px;
+	
+	
+}
 #rodape {
 	width: 1200px;
 	height: 70px;
