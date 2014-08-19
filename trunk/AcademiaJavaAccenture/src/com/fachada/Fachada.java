@@ -2,10 +2,14 @@ package com.fachada;
 
 import java.util.List;
 
+import com.domain.Compra;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
+import com.exceptions.CompraException;
+import com.impl.repository.CompraRepositorio;
 import com.impl.repository.ProdutoCampingRepositorio;
 import com.impl.repository.ProdutoRepositorio;
+import com.interfaces.repository.InterfaceCompra;
 import com.interfaces.repository.InterfaceProduto;
 import com.interfaces.repository.InterfaceProdutoCamping;
 
@@ -16,10 +20,12 @@ public class Fachada {
 	private static Fachada instancia;
 	private InterfaceProduto IProduto;
 	private InterfaceProdutoCamping IProdutoCamping;
+	private InterfaceCompra ICompra;
 	
 	public Fachada(){
 		IProduto = new ProdutoRepositorio();
 		IProdutoCamping = new ProdutoCampingRepositorio();
+		ICompra = new CompraRepositorio();
 		
 	}
 	
@@ -65,5 +71,23 @@ public class Fachada {
 	}
 	
 	//----
+	
+	//Métodos de Compra
+	
+	public void novaCompra(Compra compra) throws CompraException{
+		ICompra.novaCompra(compra);
+	}
+	
+	public void updateCompra(Compra compra) throws CompraException{
+		ICompra.alterarCompra(compra);
+	}
+	
+	public void removerCompra(Compra compra) throws CompraException{
+		ICompra.deletarCompra(compra.getIdCompra());
+	}
+	
+	public List<Compra> listarCompras(Compra compra) throws CompraException{
+		return ICompra.listaDeCompra();
+	}
 	
 }
