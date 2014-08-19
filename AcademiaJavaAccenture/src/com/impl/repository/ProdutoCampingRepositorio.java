@@ -8,36 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.domain.Produto;
-import com.interfaces.repository.InterfaceProduto;
+import com.domain.ProdutoCamping;
+import com.interfaces.repository.InterfaceProdutoCamping;
 
-//Bruno Monteiro -- 18/11/2014
+public class ProdutoCampingRepositorio implements InterfaceProdutoCamping {
 
-public class ProdutoRepositorio implements InterfaceProduto {
-
-	private int chavePrimariaInserida;
-	
 	@Override
-	public void inserirProduto(Produto p) {
+	public void inserirProdutoCamping(ProdutoCamping p) {
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("INSERT INTO PRODUTO (product_name, product_description, " + 
-			"product_image, product_price, product_type) VALUE (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement pStmt = con.prepareStatement(
+					"INSERT INTO produtocamping (Product_Id, Product_registraction"
+							+ ") VALUE (?,?)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
 
-			pStmt.setString(1, p.getNomeProduto());
-			pStmt.setString(2, p.getDescricaoProduto());
-			pStmt.setString(3, p.getImagemProduto());
-			pStmt.setFloat(4, p.getPrecoProduto());
-			pStmt.setString(5, p.getTipoProduto());
+			pStmt.setInt(1, p.getIdProduto());
+			pStmt.setString(2, p.getRegistroDaAgenciaAmbiental());
 
 			pStmt.executeUpdate();
-			
-			chavePrimariaInserida = RepositorioUtil.retornarChavePrimariaInserida(pStmt.getGeneratedKeys());
-			
 			con.commit();
-			
+
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
@@ -47,25 +40,23 @@ public class ProdutoRepositorio implements InterfaceProduto {
 	}
 
 	@Override
-	public void alterarProduto(Produto p) {
+	public void alterarProdutoCamping(ProdutoCamping p) {
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("UPDATE PRODUTO SET product_name = ?, " +
-			"product_description = ?, product_image = ?, product_price = ?, product_type = ? WHERE product_id = ?");
+			PreparedStatement pStmt = con
+					.prepareStatement("UPDATE PRODUTO SET "
+							+ "Product_registraction = ? WHERE product_id = ? and Id_produtoCamping = ?");
 
-			pStmt.setString(1, p.getNomeProduto());
-			pStmt.setString(2, p.getDescricaoProduto());
-			pStmt.setString(3, p.getImagemProduto());
-			pStmt.setFloat(4, p.getPrecoProduto());
-			pStmt.setString(5, p.getTipoProduto());
-			pStmt.setInt(6, p.getIdProduto());
+			pStmt.setString(1, p.getRegistroDaAgenciaAmbiental());
+			pStmt.setInt(2, p.getIdProduto());
+			pStmt.setInt(3, p.getIdProdutoCamping());
 
 			pStmt.executeUpdate();
 			con.commit();
-			
+
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
@@ -75,19 +66,20 @@ public class ProdutoRepositorio implements InterfaceProduto {
 	}
 
 	@Override
-	public void deletarProduto(Produto produto) {
+	public void deletarProdutoCamping(ProdutoCamping produto) {
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("DELETE FROM PRODUTO WHERE product_id = ?");
+			PreparedStatement pStmt = con
+					.prepareStatement("DELETE FROM produtocamping WHERE product_id = ?");
 
 			pStmt.setInt(1, produto.getIdProduto());
 
 			pStmt.executeUpdate();
 			con.commit();
-			
+
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
@@ -97,33 +89,36 @@ public class ProdutoRepositorio implements InterfaceProduto {
 	}
 
 	@Override
-	public List<Produto> listaDeProduto() {
+	public List<ProdutoCamping> listaDeProdutoCamping() {
 		ResultSet rs;
-		List<Produto> lista = new ArrayList<Produto>();
-		Produto produto = null;
-		
+		List<ProdutoCamping> lista = new ArrayList<ProdutoCamping>();
+		ProdutoCamping produto = null;
+
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM PRODUTO");
+			PreparedStatement pStmt = con.prepareStatement("select * from produto right join " + 
+			"produtocamping on produto.Product_Id = produtocamping.Product_Id");
 
 			rs = pStmt.executeQuery();
-			
+
 			while (rs.next()) {
-				produto = new Produto();
-				
+				produto = new ProdutoCamping();
+
 				produto.setIdProduto(rs.getInt("product_id"));
 				produto.setNomeProduto(rs.getString("product_name"));
 				produto.setDescricaoProduto(rs.getString("product_description"));
 				produto.setImagemProduto(rs.getString("product_image"));
 				produto.setPrecoProduto(rs.getFloat("product_price"));
 				produto.setTipoProduto(rs.getString("product_type"));
-				
+				produto.setIdProdutoCamping(rs.getInt("Id_produtoCamping"));
+				produto.setRegistroDaAgenciaAmbiental(rs.getString("Product_registraction"));
+
 				lista.add(produto);
 			}
-			
+
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
@@ -131,6 +126,5 @@ public class ProdutoRepositorio implements InterfaceProduto {
 		}
 		return lista;
 	}
-	
 
 }
