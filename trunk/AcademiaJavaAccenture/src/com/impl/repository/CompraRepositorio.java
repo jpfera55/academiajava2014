@@ -8,12 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.domain.Compra;
+import com.exceptions.CompraException;
 import com.interfaces.repository.InterfaceCompra;
 
 public class CompraRepositorio implements InterfaceCompra{
 
+	private static CompraRepositorio instancia;
+	
+	public static CompraRepositorio obterInstancia(){
+		if(instancia == null){
+			instancia = new CompraRepositorio();
+		}
+		return instancia;
+	}
+	
+	
 	@Override
-	public void novaCompra(Compra c) {
+	public void novaCompra(Compra c) throws CompraException {
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -27,16 +38,18 @@ public class CompraRepositorio implements InterfaceCompra{
 			pStmt.setString(4, c.getDesconto());
 
 			pStmt.executeUpdate();
+			con.commit();
 			pStmt.close();
 			con.close();
-		} catch (SQLException e) {
-			e.getMessage();
+		}catch (SQLException e) {
+			throw new CompraException(e.getMessage());
+			
 		}
 
 	}
 
 	@Override
-	public void alterarCompra(Compra c) {
+	public void alterarCompra(Compra c) throws CompraException{
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -52,16 +65,17 @@ public class CompraRepositorio implements InterfaceCompra{
 			
 			
 			pStmt.executeUpdate();
+			con.commit();
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			e.getMessage();
+			throw new CompraException(e.getMessage());
 		}
 
 	}
 
 	@Override
-	public void deletarCompra(int idProduto) {
+	public void deletarCompra(int idProduto) throws CompraException{
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -72,16 +86,17 @@ public class CompraRepositorio implements InterfaceCompra{
 			pStmt.setInt(1, idProduto);
 
 			pStmt.executeUpdate();
+			con.commit();
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			e.getMessage();
+			throw new CompraException(e.getMessage());
 		}
 
 	}
 
 	@Override
-	public List<Compra> listaDeCompra() {
+	public List<Compra> listaDeCompra() throws CompraException{
 		ResultSet rs;
 		List<Compra> lista = new ArrayList<Compra>();
 		Compra compra = null;
@@ -106,11 +121,11 @@ public class CompraRepositorio implements InterfaceCompra{
 				
 				lista.add(compra);
 			}
-			
+			con.commit();
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			e.getMessage();
+			throw new CompraException(e.getMessage());
 		}
 		return lista;
 	}
