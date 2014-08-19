@@ -75,7 +75,7 @@ public class CompraRepositorio implements InterfaceCompra{
 	}
 
 	@Override
-	public void deletarCompra(int idProduto) throws CompraException{
+	public void deletarCompra(int idCompra) throws CompraException{
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -83,7 +83,7 @@ public class CompraRepositorio implements InterfaceCompra{
 
 			PreparedStatement pStmt = con.prepareStatement("DELETE FROM Compra WHERE ID = ? ;");
 
-			pStmt.setInt(1, idProduto);
+			pStmt.setInt(1, idCompra);
 
 			pStmt.executeUpdate();
 			con.commit();
