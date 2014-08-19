@@ -5,6 +5,8 @@ import java.util.List;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
 
+// Bruno Monteiro -- 19/08/2014
+
 public interface InterfaceProdutoCamping {
 	
 	public void inserirProdutoCamping(ProdutoCamping p);
