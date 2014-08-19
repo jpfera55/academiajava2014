@@ -21,12 +21,14 @@ public class ProdutoRepositorio implements InterfaceProduto {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("INSERT INTO ");
+			PreparedStatement pStmt = con.prepareStatement("INSERT INTO product_name, product_description, " + 
+			"product_image, product_price, product_type VALUE (?,?,?,?,?)");
 
 			pStmt.setString(1, p.getNomeProduto());
 			pStmt.setString(2, p.getDescricaoProduto());
 			pStmt.setString(3, p.getImagemProduto());
 			pStmt.setFloat(4, p.getPrecoProduto());
+			pStmt.setString(5, p.getTipoProduto());
 
 			pStmt.executeUpdate();
 			pStmt.close();
@@ -44,12 +46,15 @@ public class ProdutoRepositorio implements InterfaceProduto {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("UPDATE");
+			PreparedStatement pStmt = con.prepareStatement("UPDATE PRODUTO SET product_name = ?, " +
+			"product_description = ?, product_image = ?, product_price = ?, product_type = ? WHERE product_id = ?");
 
 			pStmt.setString(1, p.getNomeProduto());
 			pStmt.setString(2, p.getDescricaoProduto());
 			pStmt.setString(3, p.getImagemProduto());
 			pStmt.setFloat(4, p.getPrecoProduto());
+			pStmt.setString(5, p.getTipoProduto());
+			pStmt.setInt(6, p.getIdProduto());
 
 			pStmt.executeUpdate();
 			pStmt.close();
@@ -67,7 +72,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("DELETE");
+			PreparedStatement pStmt = con.prepareStatement("DELETE FROM PRODUTO WHERE product_id = ?");
 
 			pStmt.setInt(1, idProduto);
 
