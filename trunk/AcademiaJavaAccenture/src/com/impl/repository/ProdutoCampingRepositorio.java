@@ -11,6 +11,8 @@ import com.domain.Produto;
 import com.domain.ProdutoCamping;
 import com.interfaces.repository.InterfaceProdutoCamping;
 
+//Bruno Monteiro -- 19/08/2014
+
 public class ProdutoCampingRepositorio implements InterfaceProdutoCamping {
 
 	@Override
