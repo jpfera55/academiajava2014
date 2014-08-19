@@ -29,6 +29,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt.setFloat(4, p.getPrecoProduto());
 
 			pStmt.executeUpdate();
+			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
 			e.getMessage();
@@ -51,6 +52,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt.setFloat(4, p.getPrecoProduto());
 
 			pStmt.executeUpdate();
+			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
 			e.getMessage();
@@ -70,6 +72,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt.setInt(1, idProduto);
 
 			pStmt.executeUpdate();
+			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
 			e.getMessage();
@@ -104,6 +107,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 				lista.add(produto);
 			}
 			
+			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
 			e.getMessage();
