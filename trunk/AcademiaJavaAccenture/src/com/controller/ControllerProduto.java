@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
 import com.domain.ProdutoVestuarioEEngrenagem;
@@ -14,6 +16,7 @@ import com.interfaces.repository.InterfaceProduto;
 
 //Bruno Monteiro -- 20/08/2014
 
+@Controller
 public class ControllerProduto {
 
 	private InterfaceProduto IRepProduto;
