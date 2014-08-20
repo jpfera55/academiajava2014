@@ -84,6 +84,11 @@ public class ControllerProduto {
 		return IRepProduto.pesquisarProdutoPeloNome(nome);
 	}
 	
+	@RequestMapping("pesquisarProdutoPeloTipo")
+	public List<Produto> pesquisarProdutoPeloTipo(String tipo){
+		return IRepProduto.pesquisarProdutoPorTipo(tipo);
+	}
+	
 	//Métodos auxiliares das validações
 	
 	public boolean verificarSeProdutoNaoENulo(Produto produto) throws ProdutoNuloException{

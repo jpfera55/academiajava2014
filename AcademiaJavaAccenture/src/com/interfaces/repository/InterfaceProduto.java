@@ -17,4 +17,5 @@ public interface InterfaceProduto {
 	public List<ProdutoCamping> listaDeProdutoCamping();
 	public List<ProdutoVestuarioEEngrenagem> listaDeProdutoVestuarioEEngrenagem();
 	public Produto pesquisarProdutoPeloNome(String nome);
+	public List<Produto> pesquisarProdutoPorTipo(String tipo);
 }

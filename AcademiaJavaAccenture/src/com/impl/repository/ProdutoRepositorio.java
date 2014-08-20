@@ -277,7 +277,37 @@ public class ProdutoRepositorio implements InterfaceProduto {
 		}
 		return produto;
 	}
-	
+
+	@Override
+	public List<Produto> pesquisarProdutoPorTipo(String tipo) {
+		ResultSet rs;
+		Produto produto = null;
+		List<Produto> lista = new ArrayList<Produto>();
+		try {
+			Connection con = Conexao.getConexao();
+
+			con.setAutoCommit(false);
+
+			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE Product_type like ?");
+			
+			pStmt.setString(1, tipo);
+
+			rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				produto = camposEmComum(rs);
+				
+				lista.add(produto);
+			}
+
+			pStmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return lista;
+	}
+
 	public Produto camposEmComum(ResultSet rs) throws SQLException{
 		Produto produto = new Produto();
 		
@@ -290,6 +320,5 @@ public class ProdutoRepositorio implements InterfaceProduto {
 		
 		return produto;
 	}
-
 	
 }
