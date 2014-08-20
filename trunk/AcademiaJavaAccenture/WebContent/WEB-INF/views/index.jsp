@@ -1,8 +1,5 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
+	pageEncoding="ISO-8859-1"%>
 <%@page import="com.fachada.Fachada"%>
 <%@page import="com.domain.Produto"%>
 <%@page import="java.util.List"%>
@@ -15,32 +12,32 @@
 <title>Extreme</title>
 </head>
 <body>
-	<ui:composition template="/Template.jsp">
-		<ui:define name="central">
-			<table border="1">
-		<tr>
-			<td>Id</td>
-			<td>Nome</td>
-			<td>Descrição</td>
-			<td>Preço</td>
-		</tr>
-		
+	<form>
+		<table border="1">
+			<tr>
+				<h3>Vestuário</h3>
+			</tr>
+			<tr>
+				<td>Id</td>
+				<td>Nome</td>
+				<td>Descrição</td>
+				<td>Preço</td>
+			</tr>
 			<%
-				List<Produto> lista = Fachada.getInstancia().listaProduto();
-				for(Produto produto : lista){
-					%>
-					<tr>
-					<td><%=produto.getIdProduto() %></td>
-					<td><%=produto.getNomeProduto() %></td>
-					<td><%=produto.getDescricaoProduto() %></td>
-					<td><%=produto.getPrecoProduto() %></td>
-					</tr>			
-				<%
+				List<Produto> lista = Fachada.getInstancia()
+						.pesquisarProdutoPorTipo("Games");
+				for (Produto produto : lista) {
+			%>
+			<tr>
+				<td><%=produto.getIdProduto()%></td>
+				<td><%=produto.getNomeProduto()%></td>
+				<td><%=produto.getDescricaoProduto()%></td>
+				<td><%=produto.getPrecoProduto()%></td>
+			</tr>
+			<%
 				}
 			%>
-		
-	</table>
-		</ui:define>
-	</ui:composition>
+		</table>
+	</form>
 </body>
 </html>
