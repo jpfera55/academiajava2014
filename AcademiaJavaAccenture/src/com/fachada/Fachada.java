@@ -2,6 +2,7 @@ package com.fachada;
 
 import java.util.List;
 
+import com.controller.ControllerCompra;
 import com.domain.Compra;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
@@ -18,11 +19,11 @@ public class Fachada {
 	
 	private static Fachada instancia;
 	private InterfaceProduto IProduto;
-	private InterfaceCompra ICompra;
+	private ControllerCompra controllerCompra;
 	
 	public Fachada(){
 		IProduto = new ProdutoRepositorio();
-		ICompra = new CompraRepositorio();
+		controllerCompra = new ControllerCompra();
 		
 	}
 	
@@ -63,19 +64,19 @@ public class Fachada {
 	//Métodos de Compra
 	
 	public void novaCompra(Compra compra) throws CompraException{
-		ICompra.novaCompra(compra);
+		controllerCompra.cadastrarCompra(compra);
 	}
 	
 	public void updateCompra(Compra compra) throws CompraException{
-		ICompra.alterarCompra(compra);
+		controllerCompra.updateCompra(compra);
 	}
 	
-	public void removerCompra(Compra compra) throws CompraException{
-		ICompra.deletarCompra(compra.getIdCompra());
+	public void removerCompra(int idCompra) throws CompraException{
+		controllerCompra.deletarCompra(idCompra);
 	}
 	
 	public List<Compra> listarCompras(Compra compra) throws CompraException{
-		return ICompra.listaDeCompra();
+		return controllerCompra.listarCompras(compra);
 	}
 	
 }
