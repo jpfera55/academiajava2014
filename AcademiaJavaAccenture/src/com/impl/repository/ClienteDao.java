@@ -6,17 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.domain.Compra;
 import com.domain.ContadoCliente;
-import com.exceptions.CompraException;
+import com.exceptions.ClienteException;
 import com.impl.repository.Conexao;
 import com.interfaces.repository.InterfaceCliente;
 
-public class Cliente  implements InterfaceCliente{
+public class ClienteDao  implements InterfaceCliente{
 
+	
+private static ClienteDao instancia;
+	
+	public static ClienteDao obterInstancia(){
+		if(instancia == null){
+			instancia = new ClienteDao();
+		}
+		return instancia;
+	}
 	@Override
-	public void inserirCliente(ContadoCliente cliente) {
+	public void novoCliente(ContadoCliente cliente)  throws ClienteException {
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -43,14 +50,14 @@ public class Cliente  implements InterfaceCliente{
 			con.close();
 		}catch (SQLException e) {
 		
-			e.getMessage();
+			throw new ClienteException(e.getMessage());
 			
 		}
 		
 	}
 
 	@Override
-	public void alterarProduto(ContadoCliente cliente) {
+	public void alterarCliente(ContadoCliente cliente)  throws ClienteException {
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -77,14 +84,14 @@ public class Cliente  implements InterfaceCliente{
 			con.close();
 		} catch (SQLException e) {
 
-			e.getMessage();
+			throw new ClienteException(e.getMessage());
 		}
 
 		
 	}
 
 	@Override
-	public void deletarProduto(int cliente) {
+	public void deletarCliente(int cliente) throws ClienteException {
 	
 		try {
 			Connection con = Conexao.getConexao();
@@ -101,13 +108,13 @@ public class Cliente  implements InterfaceCliente{
 			con.close();
 		} catch (SQLException e) {
 		    
-			e.getMessage();
+			throw new ClienteException(e.getMessage());
 		}
 		
 	}
 
 	@Override
-	public List<ContadoCliente> listaDeContadoCliente() {
+	public List<ContadoCliente> listaDeContadoCliente()  throws ClienteException{
 		ResultSet rs;
 		List<ContadoCliente> lista = new ArrayList<ContadoCliente>();
 		ContadoCliente cliente = null;
@@ -133,8 +140,8 @@ public class Cliente  implements InterfaceCliente{
 				cliente.setEstado(rs.getString("estado"));
 				cliente.setCep(rs.getString("cep"));
 				cliente.setPais(rs.getString("pais"));	
+				cliente.setSenha(rs.getString("senha"));	
 				cliente.setEmail(rs.getString("email"));
-				cliente.setSenha(rs.getString("senha"));
 				
 				
 				lista.add(cliente);
@@ -143,10 +150,13 @@ public class Cliente  implements InterfaceCliente{
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			e.getMessage();
+			throw new ClienteException(e.getMessage());
 		}
 		return lista;
 	}
+
+	
+
 	
 
 }
