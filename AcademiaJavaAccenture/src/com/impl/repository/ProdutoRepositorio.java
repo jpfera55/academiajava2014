@@ -16,8 +16,6 @@ import com.interfaces.repository.InterfaceProduto;
 
 public class ProdutoRepositorio implements InterfaceProduto {
 
-	private int chavePrimariaInserida;
-
 	@Override
 	public void inserirProduto(Produto produto) {
 		try {
@@ -36,7 +34,8 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt.setString(5, produto.getTipoProduto());
 			
 			pStmt.executeUpdate();
-			chavePrimariaInserida = RepositorioUtil.retornarChavePrimariaInserida(pStmt.getGeneratedKeys());
+			
+			int chavePrimariaInserida = RepositorioUtil.retornarChavePrimariaInserida(pStmt.getGeneratedKeys());
 
 			//Produto Camping
 			if (produto instanceof ProdutoCamping) {
@@ -172,15 +171,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				produto = new Produto();
-
-				produto.setIdProduto(rs.getInt("product_id"));
-				produto.setNomeProduto(rs.getString("product_name"));
-				produto.setDescricaoProduto(rs.getString("product_description"));
-				produto.setImagemProduto(rs.getString("product_image"));
-				produto.setPrecoProduto(rs.getFloat("product_price"));
-				produto.setTipoProduto(rs.getString("product_type"));
-
+				produto = camposEmComum(rs);
 				lista.add(produto);
 			}
 
@@ -209,14 +200,8 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				produtoCamping = new ProdutoCamping();
-
-				produtoCamping.setIdProduto(rs.getInt("product_id"));
-				produtoCamping.setNomeProduto(rs.getString("product_name"));
-				produtoCamping.setDescricaoProduto(rs.getString("product_description"));
-				produtoCamping.setImagemProduto(rs.getString("product_image"));
-				produtoCamping.setPrecoProduto(rs.getFloat("product_price"));
-				produtoCamping.setTipoProduto(rs.getString("product_type"));
+				produtoCamping = (ProdutoCamping) camposEmComum(rs);
+				
 				produtoCamping.setIdProdutoCamping(rs.getInt("Id_produtoCamping"));
 				produtoCamping.setRegistroDaAgenciaAmbiental(rs.getString("Product_registraction"));
 
@@ -248,14 +233,8 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				produtoVestuarioEEngrenagem = new ProdutoVestuarioEEngrenagem();
-
-				produtoVestuarioEEngrenagem.setIdProduto(rs.getInt("product_id"));
-				produtoVestuarioEEngrenagem.setNomeProduto(rs.getString("product_name"));
-				produtoVestuarioEEngrenagem.setDescricaoProduto(rs.getString("product_description"));
-				produtoVestuarioEEngrenagem.setImagemProduto(rs.getString("product_image"));
-				produtoVestuarioEEngrenagem.setPrecoProduto(rs.getFloat("product_price"));
-				produtoVestuarioEEngrenagem.setTipoProduto(rs.getString("product_type"));
+				produtoVestuarioEEngrenagem = (ProdutoVestuarioEEngrenagem) camposEmComum(rs);
+				
 				produtoVestuarioEEngrenagem.setIdProdutoVestuarioEEngrenagem(rs.getInt("Id_produtoApparel"));
 				produtoVestuarioEEngrenagem.setCorProduto(rs.getString("Product_Color"));
 				produtoVestuarioEEngrenagem.setTamanhoProduto(rs.getString("Product_Size"));
@@ -271,4 +250,46 @@ public class ProdutoRepositorio implements InterfaceProduto {
 		return lista;
 	}
 
+	@Override
+	public Produto pesquisarProdutoPeloNome(String nome) {
+		ResultSet rs;
+		Produto produto = null;
+
+		try {
+			Connection con = Conexao.getConexao();
+
+			con.setAutoCommit(false);
+
+			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM PRODUTO WHERE Product_Name like ?");
+			
+			pStmt.setString(1, nome);
+
+			rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				produto = camposEmComum(rs);
+			}
+
+			pStmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return produto;
+	}
+	
+	public Produto camposEmComum(ResultSet rs) throws SQLException{
+		Produto produto = new Produto();
+		
+		produto.setIdProduto(rs.getInt("product_id"));
+		produto.setNomeProduto(rs.getString("product_name"));
+		produto.setDescricaoProduto(rs.getString("product_description"));
+		produto.setImagemProduto(rs.getString("product_image"));
+		produto.setPrecoProduto(rs.getFloat("product_price"));
+		produto.setTipoProduto(rs.getString("product_type"));
+		
+		return produto;
+	}
+
+	
 }
