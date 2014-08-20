@@ -1,5 +1,5 @@
 package com.domain;
-
+//Érica Rodrigues 18/08/2014
 public class ContadoCliente {
 
 	private String nome,sobrenome, endereço1, endereço2, cidade, estado, cep , pais, senha, email ;

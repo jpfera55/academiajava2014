@@ -1,5 +1,7 @@
 package com.impl.repository;
 
+//Érica Rodrigues 19/08/2014
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
