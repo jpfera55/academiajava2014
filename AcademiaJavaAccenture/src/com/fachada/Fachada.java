@@ -108,5 +108,10 @@ public class Fachada {
 	     return cliente.listarContadoCliente(c);
 	   
 		}
+		public List<ContadoCliente> loginCliente(ContadoCliente c) throws ClienteException{
+			
+		     return cliente.listarContadoCliente(c);
+		   
+			}
 	
 }

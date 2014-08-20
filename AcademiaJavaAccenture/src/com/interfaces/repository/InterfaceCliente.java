@@ -12,6 +12,7 @@ public interface InterfaceCliente {
 	public void deletarCliente(int cliente) throws ClienteException;
 	public List<ContadoCliente> listaDeContadoCliente() throws ClienteException;
 	public void novoCliente(ContadoCliente cliente) throws ClienteException;
+	public List<ContadoCliente> loginCliente() throws ClienteException;
 	
 	
 }
