@@ -6,12 +6,12 @@ import com.domain.ContadoCliente;
 import com.exceptions.ClienteException;
 import com.impl.repository.ClienteDao;
 
-/*Érica Rodrigues*/
+/*Érica Rodrigues 20/08*/
 
 public class ControleCliente {
 
 	
-	public void CriarUsuario(ContadoCliente c) throws ClienteException{
+	public void novoCliente(ContadoCliente c) throws ClienteException{
 		
 		List<ContadoCliente> lista= this.listarContadoCliente(c);
 		boolean achou = false;
