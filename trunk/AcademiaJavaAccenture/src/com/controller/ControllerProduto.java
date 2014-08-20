@@ -5,6 +5,7 @@ import java.util.List;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
 import com.domain.ProdutoVestuarioEEngrenagem;
+import com.exceptions.MensagemErro;
 import com.exceptions.ProdutoDuplicadoException;
 import com.exceptions.ProdutoNaoLocalizadoException;
 import com.exceptions.ProdutoNuloException;
@@ -75,7 +76,7 @@ public class ControllerProduto {
 	
 	public boolean verificarSeProdutoNaoENulo(Produto produto) throws ProdutoNuloException{
 		if(produto == null){
-			throw new ProdutoNuloException("Preencha os campos para poder cadastrar o produto!");
+			throw new ProdutoNuloException(MensagemErro.ErroProdutoNulo.getMsg());
 		}
 		return true;
 	}
@@ -83,15 +84,15 @@ public class ControllerProduto {
 	public boolean verificarSeExisteProduto(String nome) throws ProdutoNaoLocalizadoException{
 		Produto produto = IRepProduto.pesquisarProdutoPeloNome(nome);
 		if(produto == null){
-			throw new ProdutoNaoLocalizadoException("Produto não existe na base, por favor verificar se o produto pesquisado realmente existe!");
+			throw new ProdutoNaoLocalizadoException(MensagemErro.ErroNaoLocalizado.getMsg());
 		}
 		return true;
 	}
 	
 	public boolean verificarDuplicidadeProduto(String nome) throws ProdutoDuplicadoException{
 		Produto produto = IRepProduto.pesquisarProdutoPeloNome(nome);
-		if((produto.getNomeProduto()).toUpperCase() == (nome).toUpperCase()){
-			throw new ProdutoDuplicadoException("Preencha os campos para poder cadastrar o produto!");
+		if((produto.getNomeProduto()).toUpperCase().equals((nome).toUpperCase())){
+			throw new ProdutoDuplicadoException(MensagemErro.ErroDuplicidade.getMsg());
 		}
 		
 		return true;
