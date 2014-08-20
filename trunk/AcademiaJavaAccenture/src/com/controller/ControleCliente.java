@@ -10,7 +10,7 @@ import com.impl.repository.ClienteDao;
 
 public class ControleCliente {
 
-	
+
 	public void novoCliente(ContadoCliente c) throws ClienteException{
 		
 		List<ContadoCliente> lista= this.listarContadoCliente(c);
@@ -26,10 +26,13 @@ public class ControleCliente {
 			throw new ClienteException(" Conta Existente! ");
 		}
 		
-		if (c.getEmail() != null && c.getSenha() != null && c.getEndereço1() != null ) {
-			throw new ClienteException("Conta Criada com Sucesso!!!");
-		}else{
+		if (c.getEmail() == null && c.getSenha() != null && c.getEndereço1() == null ) {
+			
 			throw new ClienteException("Preencha os Campos!!!");
+			
+		}else{
+		
+			throw new ClienteException("Conta Criada com Sucesso!!!");
 		}
 		
 		
@@ -52,6 +55,28 @@ public class ControleCliente {
 		ClienteDao dados = ClienteDao.obterInstancia();
 		return dados.listaDeContadoCliente();
 	}
+	
+	public void loginCliente(ContadoCliente cliente) throws ClienteException {
+
+		List<ContadoCliente> lista= this.listarContadoCliente(cliente);
+		boolean achou = false;
+	
+		 for(int i = 0; i< lista.size(); i++){
+			 
+			if (lista.get(i).getEmail() == cliente.getEmail() && lista.get(i).getSenha() == cliente.getSenha()) {
+				achou = true;
+			
+				throw new ClienteException("Conexao realizado com Sucesso");	
+			}	else{
+				throw new ClienteException(" Usuario não Encontrato");
+			}
+			
+		}	
+	
+      
+		
+	}
+		
 	
 	
 }

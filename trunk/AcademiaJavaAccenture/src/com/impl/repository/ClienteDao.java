@@ -156,10 +156,39 @@ private static ClienteDao instancia;
 		}
 		return lista;
 	}
+	@Override
+	public List<ContadoCliente> loginCliente() throws ClienteException {
+		
+		ResultSet rs;
+		List<ContadoCliente> lista1 = new ArrayList<ContadoCliente>();
+		ContadoCliente cliente1 = null;
+		
+		try {
+			Connection con = Conexao.getConexao();
 
-	
+			con.setAutoCommit(false);
 
-	
+			PreparedStatement pStmt = con.prepareStatement("SELECT email, senha FROM ContaUsuario where email =? and senha = ?");
+
+			rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				cliente1 = new ContadoCliente();
+				
+				cliente1.setSenha(rs.getString("senha"));	
+				cliente1.setEmail(rs.getString("email"));
+				
+				lista1.add(cliente1);
+			}
+			con.commit();
+			pStmt.close();
+			con.close();
+		} catch (SQLException e) {
+			throw new ClienteException(e.getMessage());
+		}
+		return lista1;
+		
+	}
 
 }
 
