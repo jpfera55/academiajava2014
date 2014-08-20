@@ -64,6 +64,10 @@ public class Fachada {
 	public Produto pesquisarProdutoPorNome(String nome){
 		return ControlProduto.pesquisarProdutoPeloNome(nome);
 	}
+	
+	public List<Produto> pesquisarProdutoPorTipo(String tipo){
+		return ControlProduto.pesquisarProdutoPeloTipo(tipo);
+	}
 	//----
 	
 	//Métodos de Compra
