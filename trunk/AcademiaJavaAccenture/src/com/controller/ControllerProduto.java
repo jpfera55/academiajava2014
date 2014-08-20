@@ -3,6 +3,7 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
@@ -17,6 +18,7 @@ import com.interfaces.repository.InterfaceProduto;
 //Bruno Monteiro -- 20/08/2014
 
 @Controller
+@RequestMapping("/views/*.htm")
 public class ControllerProduto {
 
 	private InterfaceProduto IRepProduto;
@@ -25,6 +27,7 @@ public class ControllerProduto {
 		IRepProduto = new ProdutoRepositorio();
 	}
 	
+	@RequestMapping("inserirProduto.htm")
 	public void inserirProduto(Produto produto) {
 		try {
 			if(verificarDuplicidadeProduto(produto.getNomeProduto()) && verificarSeProdutoNaoENulo(produto)){
@@ -37,6 +40,7 @@ public class ControllerProduto {
 		}
 	}
 	
+	@RequestMapping("alterarProduto.htm")
 	public void alterarProduto(Produto produto){
 		try {
 			if(verificarDuplicidadeProduto(produto.getNomeProduto()) && verificarSeProdutoNaoENulo(produto)){
@@ -49,6 +53,7 @@ public class ControllerProduto {
 		}
 	}
 	
+	@RequestMapping("deletarProduto.htm")
 	public void deletarProduto(Produto produto){
 		try {
 			if(verificarSeProdutoNaoENulo(produto)){
@@ -59,18 +64,22 @@ public class ControllerProduto {
 		}
 	}
 
+	@RequestMapping("listaDeProduto.htm")
 	public List<Produto> listaDeProduto(){
 		return IRepProduto.listaDeProduto();
 	}
 	
+	@RequestMapping("listaDeProdutoCamping.htm")
 	public List<ProdutoCamping> listaDeProdutoCamping(){
 		return IRepProduto.listaDeProdutoCamping();
 	}
 	
+	@RequestMapping("listaDeProdutoVestuarioEEngrenagem.htm")
 	public List<ProdutoVestuarioEEngrenagem> listaDeProdutoVestuarioEEngrenagem(){
 		return IRepProduto.listaDeProdutoVestuarioEEngrenagem();
 	}
 	
+	@RequestMapping("pesquisarProdutoPeloNome.htm")
 	public Produto pesquisarProdutoPeloNome(String nome){
 		return IRepProduto.pesquisarProdutoPeloNome(nome);
 	}
