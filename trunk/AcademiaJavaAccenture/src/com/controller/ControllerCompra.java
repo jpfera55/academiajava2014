@@ -42,11 +42,11 @@ public class ControllerCompra {
 		dados.alterarCompra(c);
 	}
 	
-	public void deletarCompra(Compra c) throws CompraException{
+	public void deletarCompra(int idCompra) throws CompraException{
 		
 		
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
-		dados.deletarCompra(c.getIdCompra());
+		dados.deletarCompra(idCompra);
 	}
 	
 	public List<Compra> listarCompras(Compra c) throws CompraException{
