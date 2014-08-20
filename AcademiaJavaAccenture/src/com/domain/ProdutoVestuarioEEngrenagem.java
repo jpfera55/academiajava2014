@@ -4,22 +4,29 @@ package com.domain;
 
 public class ProdutoVestuarioEEngrenagem extends Produto{
 	
-	private String tamanho;
-	private String cor;
+	private int IdProdutoVestuarioEEngrenagem;
+	private String tamanhoProduto;
+	private String corProduto;
 	
+	public int getIdProdutoVestuarioEEngrenagem() {
+		return IdProdutoVestuarioEEngrenagem;
+	}
+	public void setIdProdutoVestuarioEEngrenagem(
+			int idProdutoVestuarioEEngrenagem) {
+		IdProdutoVestuarioEEngrenagem = idProdutoVestuarioEEngrenagem;
+	}
+	public String getTamanhoProduto() {
+		return tamanhoProduto;
+	}
+	public void setTamanhoProduto(String tamanhoProduto) {
+		this.tamanhoProduto = tamanhoProduto;
+	}
+	public String getCorProduto() {
+		return corProduto;
+	}
+	public void setCorProduto(String corProduto) {
+		this.corProduto = corProduto;
+	}
 	
-	public String getTamanho() {
-		return tamanho;
-	}
-	public void setTamanho(String tamanho) {
-		this.tamanho = tamanho;
-	}
-	public String getCor() {
-		return cor;
-	}
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-	
-	
+
 }
