@@ -9,7 +9,7 @@ public interface InterfaceCompra {
 
 	public void novaCompra(Compra c) throws CompraException;
 	public void alterarCompra(Compra c) throws CompraException;
-	public void deletarCompra(int idCompra) throws CompraException;
+	public void deletarCompra(Compra c) throws CompraException;
 	public List<Compra> listaDeCompra() throws CompraException;
 	
 	
