@@ -11,7 +11,7 @@
 		<td><a href="produtoEngrenagem.jsp"> Engrenagem </a>|</td>
 		<td><a href="produtoAcessorios.jsp"> Acessórios de camping </a>|</td>
 		<td><a href="produtoLivros.jsp"> Livros </a>|</td>
-		<td><a href="produtoAudioVideo"> Áudios / Vídeos</a>|</td>
+		<td><a href="produtoAudioVideo.jsp"> Áudios / Vídeos</a>|</td>
 	</tr>
 </table>
 </div>
