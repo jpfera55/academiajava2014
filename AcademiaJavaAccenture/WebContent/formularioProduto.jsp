@@ -44,13 +44,9 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>
-						<input type="submit" value="Cadastrar">
-					</td>	
+					<td><input type="submit" value="Cadastrar"></td>
 				</tr>
 			</table>
-
-			
 		</form>
 	</center>
 </body>
