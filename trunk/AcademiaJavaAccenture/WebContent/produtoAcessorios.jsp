@@ -12,35 +12,38 @@
 <title>Extreme</title>
 </head>
 <body>
-<%@include file="menu.jsp" %>
-<center>
-<form>
-		<table border="1">
-			<tr>
-				<h3>Vestuário</h3>
-			</tr>
-			<tr>
-				<td>Id</td>
-				<td>Nome</td>
-				<td>Descrição</td>
-				<td>Preço</td>
-			</tr>
-			<%
-				List<Produto> lista = Fachada.getInstancia()
-						.pesquisarProdutoPorTipo("Games");
-				for (Produto produto : lista) {
-			%>
-			<tr>
-				<td><%=produto.getIdProduto()%></td>
-				<td><%=produto.getNomeProduto()%></td>
-				<td><%=produto.getDescricaoProduto()%></td>
-				<td><%=produto.getPrecoProduto()%></td>
-			</tr>
-			<%
-				}
-			%>
-		</table>
-	</form>
-</center>
+	<%@include file="menu.jsp"%>
+	<center>
+		<form>
+			<br>
+			<table border="1">
+				<tr>
+					<h3>Acessórios de camping</h3>
+				</tr>
+				<tr>
+					<td>Id</td>
+					<td>Nome</td>
+					<td>Descrição</td>
+					<td>Preço</td>
+				</tr>
+				<%
+					List<Produto> lista = Fachada.getInstancia()
+							.pesquisarProdutoPorTipo("Camping");
+					for (Produto produto : lista) {
+				%>
+				<tr>
+					<td><%=produto.getIdProduto()%></td>
+					<td><%=produto.getNomeProduto()%></td>
+					<td><%=produto.getDescricaoProduto()%></td>
+					<td>R$<%=produto.getPrecoProduto()%></td>
+					<td><img alt="Mais informações>" src="Imagens/plus.png">
+					<td><img alt="Adicionar ao carrinho" src="Imagens/carrinho.png">
+				</tr>
+				<%
+					}
+				%>
+			</table>
+		</form>
+	</center>
 </body>
 </html>
