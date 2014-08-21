@@ -108,10 +108,11 @@ public class ControllerProduto {
 	
 	public boolean verificarDuplicidadeProduto(String nome) throws ProdutoDuplicadoException{
 		Produto produto = IRepProduto.pesquisarProdutoPeloNome(nome);
-		if((produto.getNomeProduto()).toUpperCase().equals((nome).toUpperCase())){
-			throw new ProdutoDuplicadoException(MensagemErro.ERRO_DUPLICIDADE.getMsg());
-		}
-		
+		if(produto != null){
+			if((produto.getNomeProduto()).toUpperCase().equals((nome).toUpperCase())){
+				throw new ProdutoDuplicadoException(MensagemErro.ERRO_DUPLICIDADE.getMsg());
+			}
+		}	
 		return true;
 	}
 	
