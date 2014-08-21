@@ -12,32 +12,7 @@
 <title>Extreme</title>
 </head>
 <body>
-	<form>
-		<table border="1">
-			<tr>
-				<h3>Vestuário</h3>
-			</tr>
-			<tr>
-				<td>Id</td>
-				<td>Nome</td>
-				<td>Descrição</td>
-				<td>Preço</td>
-			</tr>
-			<%
-				List<Produto> lista = Fachada.getInstancia()
-						.pesquisarProdutoPorTipo("Games");
-				for (Produto produto : lista) {
-			%>
-			<tr>
-				<td><%=produto.getIdProduto()%></td>
-				<td><%=produto.getNomeProduto()%></td>
-				<td><%=produto.getDescricaoProduto()%></td>
-				<td><%=produto.getPrecoProduto()%></td>
-			</tr>
-			<%
-				}
-			%>
-		</table>
-	</form>
+<%@include file="menu.jsp" %>
+	
 </body>
 </html>
