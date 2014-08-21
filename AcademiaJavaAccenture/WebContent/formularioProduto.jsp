@@ -14,7 +14,7 @@
 <body>
 	<%@include file="menu.jsp"%>
 	<center>
-		<form action="Request.jsp" method="post">
+		<form action="ServletProduto" method="post">
 			<h2>Cadastro de produtos</h2>
 			<table>
 				<tr>
