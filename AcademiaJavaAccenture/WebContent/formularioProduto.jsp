@@ -1,8 +1,9 @@
+<%@page import="com.impl.repository.RepositorioUtil"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.fachada.Fachada"%>
 <%@page import="com.domain.Produto"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,11 +37,16 @@
 				<tr>
 					<td><label>Tipo:</label></td>
 					<td><select name="tipoProduto">
-							<option value="Vestuario">Vestuario</option>
-							<option value="Engrenagem">Engrenagem</option>
-							<option value="Camping">Camping</option>
-							<option value="Audio/Video">Audio/Video</option>
-							<option value="Livro">Livro</option>
+					<%
+						List<String> lista = new ArrayList<String>();
+						lista = RepositorioUtil.listarTiposDePorudto();
+						
+						for(String tipo : lista){
+					%>
+							<option value="<%=tipo%>"><%=tipo%></option>
+					<%
+					}
+						%>
 					</select></td>
 				</tr>
 				<tr>
