@@ -12,7 +12,7 @@
 <a href="login.jsp" alight="left" >Voltar a Página</a>
 
 <center>
-		<form action=" ServletCliente" method="post" >
+		<form action="ServletCadastrodeCliente" method="post">
 		<table border="1px" id="tabela1" width="400px" height="500px">
 
 			<tr>
@@ -46,7 +46,7 @@
 					
 			</tr>
 			<tr>
-		    <td>Cep: <input   type="text" name="cep"  size="42" maxlength="30"></td>
+		    <td>Cep: <input   type="text" name="cep"  size="42" maxlength="30"  onKeyPress="MascaraCep(form1.cep);"  onBlur="ValidaCep(form1.cep);"></td>
 					
 			</tr>
 			<tr>
@@ -65,7 +65,7 @@
 	
 			<tr>
 			<td><input type="reset" value="Limpar">
-			<input type="submit" name="acessar" value="Acessar" ></td>
+			<input type="submit" name="acessar" value="Cadastrar" ></td>
 			</tr>
 			
 			</table>

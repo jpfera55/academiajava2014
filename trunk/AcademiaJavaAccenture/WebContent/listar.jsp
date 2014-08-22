@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<center><h1 style="color: red ">ERRO AO LOGAR - Favor verificar login e senha</h1>
-		<td colspan="2"><a href="login.jsp">Voltar Tela Login</a></td>
-	
-	</center>
+
 </body>
 </html>
-
-
-
-

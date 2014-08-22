@@ -1,7 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.domain.Cliente;
-import com.fachada.Fachada;
 import com.impl.repository.ClienteDao;
-import com.impl.repository.Conexao;
 
 /**
- * Servlet implementation class ServletLogin
+ * Servlet implementation class ServletListar
  */
-@WebServlet("/ServletLogin")
-public class ServletLogin extends HttpServlet {
+@WebServlet("/ServletListar")
+public class ServletListar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletLogin() {
+    public ServletListar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,30 +38,14 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		ClienteDao dao = new ClienteDao();
+		List<Cliente> lista = dao.listaDeContadoCliente();
 		
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = response.getWriter();
-		
-		try{
-			
-		   Cliente cliente = new Cliente();
-		   
-		   cliente.setEmail(request.getParameter("email"));
-		   cliente.setSenha(request.getParameter("senha"));
-	   
-		   if(Fachada.getInstancia().loginCliente(cliente)){
-			   response.sendRedirect("sucesso.jsp");
-		   }else{
-			   response.sendRedirect("Erro.jsp");
-		   }
-		   
-	       } finally {
-		   out.close();
-		}	
-		   
-		 	 
-			
 	}
 
 }
+
+
+
+

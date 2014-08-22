@@ -6,7 +6,7 @@ import com.controller.ControleCliente;
 import com.controller.ControllerCompra;
 import com.controller.ControllerProduto;
 import com.domain.Compra;
-import com.domain.ContadoCliente;
+import com.domain.Cliente;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
 import com.domain.ProdutoVestuarioEEngrenagem;
@@ -90,25 +90,25 @@ public class Fachada {
 	
 	//Métodos de Contato do cliente
 	
-		public void novoCliente(ContadoCliente c){
+		public void novoCliente(Cliente c){
 			
 	         cliente.novoCliente(c);
 		}
-		public void updateCliente(ContadoCliente c) throws ClienteException{
+		public void updateCliente(Cliente c) throws ClienteException{
 			
 			cliente.updateCliente(c);
 		} 
-		public void deletarCliente(ContadoCliente c) throws ClienteException{
+		public void deletarCliente(Cliente c) throws ClienteException{
 			
 			cliente.deletarCliente(c);
 			
 		}
-		public List<ContadoCliente> listarContadoCliente(ContadoCliente c) throws ClienteException{
+		public List<Cliente> listarCliente(Cliente c) throws ClienteException{
 			
 	     return cliente.listarContadoCliente(c);
 	   
 		}
-		public boolean loginCliente(ContadoCliente c) {
+		public boolean loginCliente(Cliente c) {
 			
 		     return cliente.login(c);
 		   
