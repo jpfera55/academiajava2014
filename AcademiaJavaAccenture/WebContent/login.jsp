@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 
-					<td colspan="2"><a href="CadastroCliente.jsp">Abrir uma
+					<td colspan="2"><a href="cadastroCliente.jsp">Abrir uma
 							Conta</a></td>
 
 				</tr>

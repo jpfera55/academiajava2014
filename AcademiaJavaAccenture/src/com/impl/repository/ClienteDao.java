@@ -47,6 +47,7 @@ private static ClienteDao instancia;
 			pStmt.setString(11, cliente.getEmail());
 
              pStmt.execute();
+             con.commit();
              pStmt.close();
 		}catch (SQLException e) {
 		
