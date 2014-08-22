@@ -13,7 +13,7 @@ import com.domain.ProdutoVestuarioEEngrenagem;
 import com.exceptions.ClienteException;
 import com.exceptions.CompraException;
 
-//Bruno Monteiro -- 19/08/2014
+//Bruno Monteiro -- 19/08/2014 -- Verificado
 
 public class Fachada {
 	
@@ -50,23 +50,23 @@ public class Fachada {
 	}
 	
 	public List<Produto> listaProduto(){
-		return ControlProduto.listaDeProduto();
+		return this.ControlProduto.listaDeProduto();
 	}
 	
 	public List<ProdutoCamping> listaProdutoCampings(){
-		return ControlProduto.listaDeProdutoCamping();
+		return this.ControlProduto.listaDeProdutoCamping();
 	}
 	
 	public List<ProdutoVestuarioEEngrenagem> listaProdutoVestuarioEEngrenagem(){
-		return ControlProduto.listaDeProdutoVestuarioEEngrenagem();
+		return this.ControlProduto.listaDeProdutoVestuarioEEngrenagem();
 	}
 	
 	public Produto pesquisarProdutoPorNome(String nome){
-		return ControlProduto.pesquisarProdutoPeloNome(nome);
+		return this.ControlProduto.pesquisarProdutoPeloNome(nome);
 	}
 	
 	public List<Produto> pesquisarProdutoPorTipo(String tipo){
-		return ControlProduto.pesquisarProdutoPeloTipo(tipo);
+		return this.ControlProduto.pesquisarProdutoPeloTipo(tipo);
 	}
 	//----
 	

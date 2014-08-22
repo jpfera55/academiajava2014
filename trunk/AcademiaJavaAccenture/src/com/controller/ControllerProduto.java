@@ -15,7 +15,7 @@ import com.exceptions.ProdutoNuloException;
 import com.impl.repository.ProdutoRepositorio;
 import com.interfaces.repository.InterfaceProduto;
 
-//Bruno Monteiro -- 20/08/2014
+//Bruno Monteiro -- 20/08/2014 -- Verificado
 
 @Controller
 @RequestMapping("/views/*.htm")
@@ -37,8 +37,8 @@ public class ControllerProduto {
 			System.out.println(e.getMessage());
 		} catch (ProdutoNuloException e1){
 			System.out.println(e1.getMessage());
-		}catch (Exception e1){
-			System.out.println(e1.getMessage());
+		} catch (Exception e2){
+			System.out.println(e2.getMessage());
 		}
 	}
 	
