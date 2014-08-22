@@ -5,36 +5,30 @@ import java.util.List;
 import com.domain.ContadoCliente;
 import com.exceptions.ClienteException;
 import com.impl.repository.ClienteDao;
+import com.impl.repository.ProdutoRepositorio;
+import com.interfaces.repository.InterfaceCliente;
+import com.interfaces.repository.InterfaceProduto;
 
 /*Érica Rodrigues 20/08*/
 
 public class ControleCliente {
+	private InterfaceCliente IntCliente;
+	
+	public ControleCliente(){
+		IntCliente = new ClienteDao();
+	}
 
-
-	public void novoCliente(ContadoCliente c) throws ClienteException{
+	public void novoCliente(ContadoCliente c){
 		
-		List<ContadoCliente> lista= this.listarContadoCliente(c);
-		boolean achou = false;
-		
-		for(int i = 0; i< lista.size(); i++){
-			if (lista.get(i).getEmail() == c.getEmail()){
-				achou = true;
-				break;
-			}
-		}
-		if(achou == true){
-			throw new ClienteException(" Conta Existente! ");
-		}
 		
 		if (c.getEmail() == null && c.getSenha() != null && c.getEndereço1() == null ) {
-			
-			throw new ClienteException("Preencha os Campos!!!");
-			
-		}else{
-		
-			throw new ClienteException("Conta Criada com Sucesso!!!");
-		}
-		
+			System.out.println("Preencha os Campos!!!");
+         }
+            else{
+
+		System.out.println("Conta Criada com Sucesso!!!");
+        }
+	
 		
 	}
     public void updateCliente(ContadoCliente c) throws ClienteException{
@@ -56,22 +50,32 @@ public class ControleCliente {
 		return dados.listaDeContadoCliente();
 	}
 	
-	public void loginCliente(ContadoCliente cliente) throws ClienteException {
+	public boolean login(ContadoCliente cliente) {
 
-		List<ContadoCliente> lista= this.listarContadoCliente(cliente);
-		boolean achou = false;
+		List<ContadoCliente> lista;
+		try {
+			lista = ClienteDao.obterInstancia().loginCliente();
+			 for(int i = 0; i< lista.size(); i++){
+				 
+					if (lista.get(i).getEmail().equals(cliente.getEmail()) && lista.get(i).getSenha().equals(cliente.getSenha())) {
+						
+						return true;
+					
+						//				throw new ClienteException("Conexao realizado com Sucesso");	
+					}	else{
+						//	throw new ClienteException(" Usuario não Encontrato");
+						
+					}
+				
+				}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 	
-		 for(int i = 0; i< lista.size(); i++){
-			 
-			if (lista.get(i).getEmail() == cliente.getEmail() && lista.get(i).getSenha() == cliente.getSenha()) {
-				achou = true;
-			
-				throw new ClienteException("Conexao realizado com Sucesso");	
-			}	else{
-				throw new ClienteException(" Usuario não Encontrato");
-			}
-			
-		}	
+	
+		
+		return false;	
 	
       
 		

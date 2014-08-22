@@ -8,11 +8,11 @@ import com.exceptions.ClienteException;
 public interface InterfaceCliente {
 	
 	
-	public void alterarCliente(ContadoCliente cliente) throws ClienteException;
-	public void deletarCliente(int cliente) throws ClienteException;
-	public List<ContadoCliente> listaDeContadoCliente() throws ClienteException;
-	public void novoCliente(ContadoCliente cliente) throws ClienteException;
-	public List<ContadoCliente> loginCliente() throws ClienteException;
+	public void alterarCliente(ContadoCliente cliente);
+	public void deletarCliente(int cliente);
+	public List<ContadoCliente> listaDeContadoCliente() ;
+	public void novoCliente(ContadoCliente cliente);
+	public List<ContadoCliente> loginCliente() ;
 	
 	
 }

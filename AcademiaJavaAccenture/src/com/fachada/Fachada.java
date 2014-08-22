@@ -90,7 +90,7 @@ public class Fachada {
 	
 	//Métodos de Contato do cliente
 	
-		public void novoCliente(ContadoCliente c) throws ClienteException{
+		public void novoCliente(ContadoCliente c){
 			
 	         cliente.novoCliente(c);
 		}
@@ -108,10 +108,12 @@ public class Fachada {
 	     return cliente.listarContadoCliente(c);
 	   
 		}
-		public List<ContadoCliente> loginCliente(ContadoCliente c) throws ClienteException{
+		public boolean loginCliente(ContadoCliente c) {
 			
-		     return cliente.listarContadoCliente(c);
+		     return cliente.login(c);
 		   
-			}
+		}
+		
+		
 	
 }

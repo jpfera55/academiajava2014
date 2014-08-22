@@ -1,66 +1,48 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!--Érica Rodrigues-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 <head>
-<link rel="stylesheet" type="text/css" href="estilo.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login de Usuário</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-
 <body>
-<center>
-	<div id="todos">
 
-<div id="cabecalho"><br/>
+	<br />
+
+	<center>
+		<form id="form" name="form" method="post" action="ServletLogin">
+			<table border="1px" id="login">
+
+				<tr>
+
+					<td colspan="2"><h2>Login do Usuário</h2></td>
+
+				</tr>
+
+				<tr>
+
+					<td>Usuário: <input type="text" name="email"></td>
 
 
+					<td>Senha: <input type="password" name="senha"></td>
 
-</div>
+				</tr>
 
-<div id="conteudo">
+				<tr>
+					<td><input type="reset" value="Limpar"></td>
+					<td><input type="submit" name="acessar" value="Acessar"
+						id="botao"></td>
+				</tr>
+				<tr>
 
-<center>
-		<form action="ServeltLogar" methor="get" >
-		<table border="1px" id="tabela">
+					<td colspan="2"><a href="CadastroCliente.jsp">Abrir uma
+							Conta</a></td>
 
-			<tr>
-
-			<td colspan="2"><h2>Login do Usuário</h2></td>
-
-           </tr>
-							
-		   <tr>
-
-		   <td>Usuario: <input placebolder="usuario" autocomplete="on" required="true" type="text" name="usuario"></td>
-								
-
-		    <td>Senha: <input placebolder="senha" autocomplete="on" required="true" type="password" name="senha"></td>
-								
-			</tr>
-			<tr>
-			<td><input type="reset" value="Limpar"></td>
-			<td><input type="submit" name="acessar" value="Acessar"></td>
-			</tr>
-			<tr>
-
-			<td colspan="2"><a  href="cadastro.jsp">Abrir uma Conta</a></td>
-
-			</tr>
+				</tr>
 
 			</table>
-		 </form>
+		</form>
 
-
-
-</center>
-
-</div>
-<div id="rodape"></div>
-
-</div>
-</center>				
-
+	</center>
 </body>
 </html>
