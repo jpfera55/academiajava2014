@@ -27,8 +27,7 @@
 					<td>Preço</td>
 				</tr>
 				<%
-					List<Produto> lista = Fachada.getInstancia()
-							.pesquisarProdutoPorTipo("Camping");
+					List<Produto> lista = Fachada.getInstancia().pesquisarProdutoPorTipo("Camping");
 					for (Produto produto : lista) {
 				%>
 				<tr>

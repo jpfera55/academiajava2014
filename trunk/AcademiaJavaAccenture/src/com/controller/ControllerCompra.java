@@ -10,7 +10,7 @@ public class ControllerCompra {
 
 	public void cadastrarCompra(Compra c) throws CompraException{
 		
-		List<Compra> lista= this.listarCompras(c);
+		List<Compra> lista = this.listarCompras(c);
 		boolean achou = false;
 		
 		for(int i = 0; i< lista.size(); i++){
@@ -50,9 +50,7 @@ public class ControllerCompra {
 	}
 	
 	public List<Compra> listarCompras(Compra c) throws CompraException{
-		
-		
-		
+
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
 		return dados.listaDeCompra();
 	}

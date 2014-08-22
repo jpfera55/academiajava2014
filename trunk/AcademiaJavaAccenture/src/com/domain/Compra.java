@@ -5,7 +5,7 @@ public class Compra {
 	private int idCompra;
 	private ContadoCliente idCliente;
 	private ItensCarrinho idCarrinho;
-	private float valorTotal;
+	private double valorTotal;
 	private String desconto;
 	
 	
@@ -27,10 +27,10 @@ public class Compra {
 	public void setIdCarrinho(ItensCarrinho idCarrinho) {
 		this.idCarrinho = idCarrinho;
 	}
-	public float getValorTotal() {
+	public double getValorTotal() {
 		return valorTotal;
 	}
-	public void setValorTotal(float valorTotal) {
+	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 	public String getDesconto() {
