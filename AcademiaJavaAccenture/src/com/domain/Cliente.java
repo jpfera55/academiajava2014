@@ -1,8 +1,8 @@
 package com.domain;
 //Érica Rodrigues 18/08/2014
-public class ContadoCliente {
+public class Cliente {
 
-	private String nome,sobrenome, endereço1, endereço2, cidade, estado, cep , pais, senha, email ;
+	private String nome,sobrenome, endereçoPrincipal, endereçoAlternativo, cidade, estado, cep , pais, senha, email ;
  	private int id;
     public String getSenha() {
 		return senha;
@@ -29,17 +29,17 @@ public class ContadoCliente {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public String getEndereço1() {
-		return endereço1;
+	public String getEndereçoPrincipal() {
+		return endereçoPrincipal;
 	}
-	public void setEndereço1(String endereço1) {
-		this.endereço1 = endereço1;
+	public void setEndereçoPrincipal(String endereçoPrincipal) {
+		this.endereçoPrincipal = endereçoPrincipal;
 	}
-	public String getEndereço2() {
-		return endereço2;
+	public String getEndereçoAlternativo() {
+		return endereçoAlternativo;
 	}
-	public void setEndereço2(String endereço2) {
-		this.endereço2 = endereço2;
+	public void setEndereçoAlternativo(String endereçoAlternativo) {
+		this.endereçoAlternativo = endereçoAlternativo;
 	}
 	public String getCidade() {
 		return cidade;
