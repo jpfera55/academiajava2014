@@ -44,9 +44,11 @@ public class CompraRepositorio implements InterfaceCompra{
 			pStmt.close();
 			conexao.close();
 		}catch (SQLException e) {
-			throw new CompraException(e.getMessage());	
+			throw new CompraException("Erro: " + e.getMessage());	
 		}catch (Exception e){
 			System.out.println("Erro: " + e.getMessage());
+		}finally{
+			
 		}
 
 	}
@@ -76,7 +78,10 @@ public class CompraRepositorio implements InterfaceCompra{
 			throw new CompraException(e.getMessage());
 		}catch (Exception e){
 			System.out.println("Erro: " + e.getMessage());
+		}finally{
+			
 		}
+
 
 	}
 
@@ -99,7 +104,10 @@ public class CompraRepositorio implements InterfaceCompra{
 			throw new CompraException(e.getMessage());
 		}catch (Exception e){
 			System.out.println("Erro: " + e.getMessage());
+		}finally{
+			
 		}
+
 
 	}
 	
@@ -138,7 +146,10 @@ public class CompraRepositorio implements InterfaceCompra{
 			throw new CompraException(e.getMessage());
 		} catch (Exception e) {
 			throw new CompraException(e.getMessage());
+		}finally{
+			
 		}
+
 		
 		return listaTudo;
 	}
@@ -180,7 +191,10 @@ public class CompraRepositorio implements InterfaceCompra{
 			throw new CompraException(e.getMessage());
 		} catch (Exception e) {
 			throw new CompraException(e.getMessage());
+		}finally{
+			
 		}
+
 		return lista;
 	}
 	

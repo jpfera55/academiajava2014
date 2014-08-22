@@ -55,4 +55,11 @@ public class ControllerCompra {
 		return dados.listarCompras(compra);
 	}
 	
+	public List<Compra> listarCompraEspecifica(Compra compra) throws CompraException{
+
+		CompraRepositorio dados = CompraRepositorio.obterInstancia();
+		return dados.listarCompraEspecifica(compra);
+	}
+	
+	
 }
