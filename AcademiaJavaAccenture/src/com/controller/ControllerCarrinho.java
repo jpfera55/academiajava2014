@@ -4,30 +4,18 @@ import java.util.List;
 
 import com.domain.Carrinho;
 import com.exceptions.CarrinhoException;
-import com.impl.repository.AdicionarCarrinho;
+import com.impl.repository.CarrinhoRepositorio;
 import com.impl.repository.CompraRepositorio;
 
 public class ControllerCarrinho {
 
-	public void adicionarCarrinho(Carrinho c) throws CarrinhoException {
+	public void adicionarCarrinho(Carrinho carrinho) throws CarrinhoException {
 		boolean encontrou = false;
 
-		List<Carrinho> lista = this.listarCarrinho(c);
+		List<Carrinho> lista = this.listarCarrinho(carrinho);
+		
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).codCarrinho() == c.codCarrinho()) {
-				encontrou = true;
-				break;
-			}
-		}
-
-		if (encontrou == true) {
-
-			throw new CarrinhoException("Carrinho  já existe");
-		}
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getProduto().getId() == c
-					.getProduto().getId()) {
+			if (lista.get(i).getProduto().getId() == carrinho.getProduto().getId()) {
 				encontrou = true;
 				break;
 			}
@@ -39,31 +27,19 @@ public class ControllerCarrinho {
 			throw new CarrinhoException("Produtos duplicados no carrinho");
 		}
 
-		AdicionarCarrinho dados = AdicionarCarrinho.obterEstancia();
-		dados.adicionarCarrinho(c);
+		CarrinhoRepositorio dados = CarrinhoRepositorio.obterEstancia();
+		dados.adicionarCarrinho(carrinho);
 
 	}
 
-	public void updateCarrinho(Carrinho c) throws CarrinhoException {
+	public void updateCarrinho(Carrinho carrinho) throws CarrinhoException {
 
 		boolean encontrou = false;
 
-		List<Carrinho> lista = this.listarCarrinho(c);
+		List<Carrinho> lista = this.listarCarrinho(carrinho);
+	
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).codCarrinho() == c.codCarrinho()) {
-				encontrou = true;
-				break;
-			}
-		}
-
-		if (encontrou == true) {
-
-			throw new CarrinhoException("Carrinho  já existe");
-		}
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getProduto().getId() == c
-					.getProduto().getId()) {
+			if (lista.get(i).getProduto().getId() == carrinho.getProduto().getId()) {
 				encontrou = true;
 				break;
 			}
@@ -75,24 +51,21 @@ public class ControllerCarrinho {
 			throw new CarrinhoException("Produtos duplicados no carrinho");
 		}
 
-		AdicionarCarrinho carrinho = AdicionarCarrinho
-				.obterEstancia();
-		carrinho.updateCarrinho(c);
+		CarrinhoRepositorio carro = CarrinhoRepositorio.obterEstancia();
+		carro.updateCarrinho(carrinho);
 
 	}
 
-	public void deletarCarrinho(Carrinho c) throws CarrinhoException {
-		AdicionarCarrinho carrinho = AdicionarCarrinho
-				.obterEstancia();
-		carrinho.removerCarrinho(c);
+	public void deletarCarrinho(Carrinho carrinho) throws CarrinhoException {
+		CarrinhoRepositorio carro = CarrinhoRepositorio.obterEstancia();
+		carro.removerCarrinho(carrinho);
 	}
 
-	public List<Carrinho> listarCarrinho(Carrinho c)
+	public List<Carrinho> listarCarrinho(Carrinho carrinho)
 			throws CarrinhoException {
-		AdicionarCarrinho carrinho = AdicionarCarrinho
-				.obterEstancia();
+		CarrinhoRepositorio carro = CarrinhoRepositorio.obterEstancia();
 
-		return carrinho.listarCarrinho();
+		return carro.listarCarrinho(carrinho);
 	}
 
 }

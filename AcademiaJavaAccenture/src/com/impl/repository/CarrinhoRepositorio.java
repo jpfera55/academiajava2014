@@ -1,6 +1,7 @@
 package com.impl.repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
@@ -11,7 +12,6 @@ import java.util.List;
 import com.domain.Carrinho;
 import com.exceptions.CarrinhoException;
 import com.interfaces.repository.InterfaceCarrinho;
-import com.mysql.jdbc.PreparedStatement;
 
 public class CarrinhoRepositorio implements InterfaceCarrinho {
 
@@ -28,16 +28,17 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 	}
 
 	@Override
-	public void adicionarCarrinho(Carrinho carrinho){
+	public void adicionarCarrinho(Carrinho carrinho) {
 
 		try {
 
 			Connection con = Conexao.getConexao();
 			con.setAutoCommit(false);
-			
-			java.sql.PreparedStatement pStmt = con.prepareStatement("INSERT INTO CARRINHO (CodCarrinho,quantidade,produto) VALUE (?,?,?)");
 
-			pStmt.setInt(1, carrinho.codCarrinho());
+			PreparedStatement pStmt = con
+					.prepareStatement("INSERT INTO CARRINHO (CodCarrinho,quantidade,produto) VALUE (?,?,?)");
+
+			pStmt.setInt(1, carrinho.getcodCarrinho());
 			pStmt.setInt(3, carrinho.getQuantidade());
 			pStmt.setInt(2, carrinho.getProduto().getId());
 
@@ -47,8 +48,11 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 			con.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			fechar();
 		}
-
 	}
 
 	@Override
@@ -59,7 +63,7 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 			java.sql.PreparedStatement pStmt = con
 					.prepareStatement("UPDATE CARRINHO SET codCarrinho=?,quantidade=?,produto=? WHERE CodCarrinho=?");
 
-			pStmt.setInt(1, carrinho.codCarrinho());
+			pStmt.setInt(1, carrinho.getcodCarrinho());
 			pStmt.setInt(2, carrinho.getQuantidade());
 			pStmt.setInt(3, carrinho.getProduto().getId());
 
@@ -69,19 +73,23 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 			con.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			fechar();
 		}
 
 	}
 
 	@Override
-	public void removerCarrinho(Carrinho carrinho)  throws CarrinhoException{
+	public void removerCarrinho(Carrinho carrinho) throws CarrinhoException {
 		try {
 			Connection con = Conexao.getConexao();
 			con.setAutoCommit(false);
-			java.sql.PreparedStatement pStmt = con
+			PreparedStatement pStmt = con
 					.prepareStatement("DELETE FROM CARRINHO WHERE codCarrinho=?");
 
-			pStmt.setInt(1, carrinho.codCarrinho());
+			pStmt.setInt(1, carrinho.getcodCarrinho());
 
 			pStmt.executeUpdate();
 			con.commit();
@@ -89,33 +97,47 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 			con.close();
 		} catch (SQLException e) {
 			throw new CarrinhoException(e.getMessage());
+		} catch (Exception e) {
+
+			throw new CarrinhoException(e.getMessage());
+		} finally {
+
+			fechar();
+
 		}
+	}
+	
+	private void fechar() {
+
 	}
 
 	@Override
-	public List<Carrinho> listarCarrinho()  throws CarrinhoException{
+	public List<Carrinho> listarCarrinho(Carrinho carrinho)
+			throws CarrinhoException {
 		ResultSet rs;
 		List<Carrinho> lista = new ArrayList<Carrinho>();
 		Carrinho itens = null;
-		
+
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			java.sql.PreparedStatement pStmt = con.prepareStatement("SELECT * FROM CARRINHO");
+			PreparedStatement pStmt = con
+					.prepareStatement("SELECT * FROM CARRINHO WHERE Product_Id = ?");
+			pStmt.setInt(1, carrinho.getProduto().getId());
 
 			rs = pStmt.executeQuery();
-			
+
 			while (rs.next()) {
-			Carrinho carrinho = new Carrinho();
-			carrinho.setCodCarrinho(rs.getInt("cod_carrinho"));
-			carrinho.setQuantidade(rs.getInt("quantidade"));
-			carrinho.getProduto().setId(rs.getInt("Produto"));
-			
-			lista.add(carrinho);
+				Carrinho carro = new Carrinho();
+				carro.setCodCarrinho(rs.getInt("cod_carrinho"));
+				carro.setQuantidade(rs.getInt("quantidade"));
+				carro.getProduto().setId(rs.getInt("Produto"));
+
+				lista.add(carro);
 			}
-			
+
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
@@ -123,11 +145,5 @@ public class CarrinhoRepositorio implements InterfaceCarrinho {
 		}
 		return lista;
 	}
-	
-				
-				
+
 }
-		
-
-
-

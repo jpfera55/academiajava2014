@@ -53,8 +53,8 @@ public class ServletCarrinhos extends HttpServlet {
 		try{
 
 		    Conexao con = new Conexao();
-		    AdicionarCarrinho  dao = new AdicionarCarrinho ();
-		   Carrinho  c = new Carrinho();
+		   CarrinhoRepositorio  dao = new  CarrinhoRepositorio  ();
+		   Carrinho  carrinho = new Carrinho();
 		   
 
 		
