@@ -30,12 +30,14 @@ public class ControllerProduto {
 	@RequestMapping("inserirProduto.htm")
 	public void inserirProduto(Produto produto) {
 		try {
-			if(verificarDuplicidadeProduto(produto.getNomeProduto()) && verificarSeProdutoNaoENulo(produto)){
+			if(this.verificarDuplicidadeProduto(produto.getNome()) && this.verificarSeProdutoNaoENulo(produto)){
 				IRepProduto.inserirProduto(produto);
 			}
 		} catch (ProdutoDuplicadoException e) {
 			System.out.println(e.getMessage());
 		} catch (ProdutoNuloException e1){
+			System.out.println(e1.getMessage());
+		}catch (Exception e1){
 			System.out.println(e1.getMessage());
 		}
 	}
@@ -43,13 +45,15 @@ public class ControllerProduto {
 	@RequestMapping("alterarProduto.htm")
 	public void alterarProduto(Produto produto){
 		try {
-			if(verificarDuplicidadeProduto(produto.getNomeProduto()) && verificarSeProdutoNaoENulo(produto)){
+			if(this.verificarDuplicidadeProduto(produto.getNome()) && this.verificarSeProdutoNaoENulo(produto)){
 				IRepProduto.alterarProduto(produto);
 			}
 		} catch (ProdutoDuplicadoException e) {
 			System.out.println(e.getMessage());
 		} catch (ProdutoNuloException e1) {
 			System.out.println(e1.getMessage());
+		} catch (Exception e2){
+			System.out.println(e2.getMessage());
 		}
 	}
 	
@@ -61,6 +65,8 @@ public class ControllerProduto {
 			}
 		} catch (ProdutoNuloException e) {
 			System.out.println(e.getMessage());
+		} catch (Exception e2){
+			System.out.println(e2.getMessage());
 		}
 	}
 
@@ -109,7 +115,7 @@ public class ControllerProduto {
 	public boolean verificarDuplicidadeProduto(String nome) throws ProdutoDuplicadoException{
 		Produto produto = IRepProduto.pesquisarProdutoPeloNome(nome);
 		if(produto != null){
-			if((produto.getNomeProduto()).toUpperCase().equals((nome).toUpperCase())){
+			if((produto.getNome()).toUpperCase().equals((nome).toUpperCase())){
 				throw new ProdutoDuplicadoException(MensagemErro.ERRO_DUPLICIDADE.getMsg());
 			}
 		}	
