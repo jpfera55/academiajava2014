@@ -126,7 +126,11 @@ public class CompraRepositorio implements InterfaceCompra{
 			con.commit();
 			pStmt.close();
 			con.close();
+			
+			
 		} catch (SQLException e) {
+			throw new CompraException(e.getMessage());
+		} catch (Exception e) {
 			throw new CompraException(e.getMessage());
 		}
 		return lista;
