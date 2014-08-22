@@ -33,7 +33,7 @@ public class CompraRepositorio implements InterfaceCompra{
 			PreparedStatement pStmt = con.prepareStatement("INSERT INTO Compra VALUES(?,?,?,'?');");
 
 			pStmt.setInt(1, c.getIdCliente().getId());
-			pStmt.setInt(2, c.getIdCarrinho().getIdCarrinho());
+			pStmt.setInt(2, c.getIdCarrinho().codCarrinho());
 			pStmt.setDouble(3, c.getValorTotal());
 			pStmt.setString(4, c.getDesconto());
 
@@ -58,7 +58,7 @@ public class CompraRepositorio implements InterfaceCompra{
 			PreparedStatement pStmt = con.prepareStatement("UPDATE Compra SET ID_ContaUsuario = ?, ID_carrinho = ?, PrecoTotal = ?, TipoDesconto = '?' WHERE ID = ?;");
 
 			pStmt.setInt(1, c.getIdCliente().getId());
-			pStmt.setInt(2, c.getIdCarrinho().getIdCarrinho());
+			pStmt.setInt(2, c.getIdCarrinho().codCarrinho());
 			pStmt.setDouble(3, c.getValorTotal());
 			pStmt.setString(4, c.getDesconto());
             pStmt.setInt(5, c.getIdCompra());
@@ -109,7 +109,7 @@ public class CompraRepositorio implements InterfaceCompra{
 			PreparedStatement pStmt = con.prepareStatement("select compra.ID, contausuario.Nome, compra.PrecoTotal, compra.TipoDescontocontausuario from compra inner join contausuario on compra.ID_ContaUsuario = ? inner join carrinho on compra.ID_carrinho = ?;");
 
 			pStmt.setString(1, compra.getIdCliente().getNome());
-			pStmt.setInt(2, compra.getIdCarrinho().getIdCarrinho());
+			pStmt.setInt(2, compra.getIdCarrinho().codCarrinho());
 			
 			rs = pStmt.executeQuery();
 			
@@ -118,7 +118,7 @@ public class CompraRepositorio implements InterfaceCompra{
 				
 				compra.setIdCompra(rs.getInt("ID"));
 				compra.getIdCliente().setNome(rs.getString("Nome"));
-				compra.getIdCarrinho().setIdCarrinho(rs.getInt("PrecoTotal"));
+				compra.getIdCarrinho().setCodCarrinho(rs.getInt("PrecoTotal"));
 				compra.setDesconto(rs.getString("TipoDescontocontausuario"));
 				
 				lista.add(compra);

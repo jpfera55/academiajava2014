@@ -14,7 +14,7 @@ public class ControllerCompra {
 		boolean achou = false;
 		
 		for(int i = 0; i< lista.size(); i++){
-			if (lista.get(i).getIdCarrinho().getIdCarrinho() == compra.getIdCarrinho().getIdCarrinho()){
+			if (lista.get(i).getIdCarrinho().codCarrinho() == compra.getIdCarrinho().codCarrinho()){
 				achou = true;
 				break;
 			}

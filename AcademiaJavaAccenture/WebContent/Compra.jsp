@@ -1,4 +1,4 @@
-<%@page import="com.domain.ItensCarrinho"%>
+<%@page import="com.domain.Carrinho"%>
 <%@page import="com.exceptions.CarrinhoException"%>
 <%@page import="org.springframework.beans.factory.ListableBeanFactory"%>
 <%@page import="com.domain.Compra"%>
@@ -35,7 +35,9 @@
 				
 				
 				
-				 <%c.getIdCarrinho().setIdCarrinho(1);%>
+				 <%
+																 	c.getIdCarrinho().setCodCarrinho(1);
+																 %>
 				 <%c.getIdCliente().setNome("Antony");%>
 				 
 				
