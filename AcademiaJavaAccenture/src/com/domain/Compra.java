@@ -15,16 +15,16 @@ public class Compra {
 	public void setIdCompra(int idCompra) {
 		this.idCompra = idCompra;
 	}
-	public ContadoCliente getIdCliente() {
+	public ContadoCliente getCliente() {
 		return Cliente;
 	}
-	public void setIdCliente(ContadoCliente idCliente) {
+	public void setCliente(ContadoCliente idCliente) {
 		this.Cliente = idCliente;
 	}
-	public Carrinho getIdCarrinho() {
+	public Carrinho getCarrinho() {
 		return Carrinho;
 	}
-	public void setIdCarrinho(Carrinho idCarrinho) {
+	public void setCarrinho(Carrinho idCarrinho) {
 		this.Carrinho = idCarrinho;
 	}
 	public double getValorTotal() {
