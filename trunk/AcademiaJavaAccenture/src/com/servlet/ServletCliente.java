@@ -64,7 +64,7 @@ public class ServletCliente extends HttpServlet {
 		   dao.novoCliente(cliente);
 
 
-		   response.sendRedirect("menu.jsp");
+		   response.sendRedirect("login.jsp");
 		 	 
 		} finally {
 		   out.close();
