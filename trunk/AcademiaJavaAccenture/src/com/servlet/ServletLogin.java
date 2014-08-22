@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,29 +9,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.domain.Produto;
+import com.domain.ContadoCliente;
 import com.fachada.Fachada;
+import com.impl.repository.ClienteDao;
+import com.impl.repository.Conexao;
 
 /**
- * Servlet implementation class ServletProduto
+ * Servlet implementation class ServletLogin
  */
-@WebServlet("/ServletProduto")
-public class ServletProduto extends HttpServlet {
+@WebServlet("/ServletLogin")
+public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletProduto() {
+    public ServletLogin() {
         super();
-   
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -40,16 +43,25 @@ public class ServletProduto extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
-		Produto p = new Produto();
+		PrintWriter out = response.getWriter();
 		
-		p.setNomeProduto(request.getParameter("nomeProduto"));
-		p.setDescricaoProduto(request.getParameter("descricaoProduto"));
-		p.setPrecoProduto(new Float(request.getParameter("precoProduto")));
-		p.setTipoProduto(request.getParameter("tipoProduto"));
 		
-		Fachada.getInstancia().inserirProduto(p);
-		
-		response.sendRedirect("index.jsp");
+
+		   
+		   ContadoCliente cliente = new ContadoCliente();
+		   
+		   cliente.setEmail(request.getParameter("email"));
+		   cliente.setSenha(request.getParameter("senha"));
+	   
+		   if(Fachada.getInstancia().loginCliente(cliente)){
+			   response.sendRedirect("menu.jsp");
+		   }else{
+			   response.sendRedirect("Erro.jsp");
+		   }
+
+		   
+		 	 
+			
 	}
 
 }

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.domain.ContadoCliente;
 import com.exceptions.ClienteException;
 import com.impl.repository.Conexao;
@@ -25,16 +26,16 @@ private static ClienteDao instancia;
 		return instancia;
 	}
 	@Override
-	public void novoCliente(ContadoCliente cliente)  throws ClienteException {
+	public void novoCliente(ContadoCliente cliente) {
 		try {
 			Connection con = Conexao.getConexao();
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("INSERT INTO ContaUsuario VALUES(?,?,?,?,?,?,?,?,?,?,?);");
-
+			PreparedStatement pStmt = con.prepareStatement("INSERT INTO  ContaUsuario" + " (ID_ContaUsuario,Nome, Sobrenome, Endereco1, Endereco2, Cidade, Estado, CEP, Pais, Email, Senha)" +"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			
 			pStmt.setInt(1, cliente.getId());
-			pStmt.setString(2, cliente.getNome());
+            pStmt.setString(2, cliente.getNome());
 			pStmt.setString(3, cliente.getSobrenome());
 			pStmt.setString(4, cliente.getEndereço1());
 			pStmt.setString(5, cliente.getEndereço2());
@@ -44,22 +45,19 @@ private static ClienteDao instancia;
 			pStmt.setString(9, cliente.getPais());
 			pStmt.setString(10, cliente.getSenha());
 			pStmt.setString(11, cliente.getEmail());
-	
 
-			pStmt.executeUpdate();
-			con.commit();
-			pStmt.close();
-			con.close();
+             pStmt.execute();
+             pStmt.close();
 		}catch (SQLException e) {
 		
-			throw new ClienteException(e.getMessage());
+			System.out.println(e.getMessage());
 			
 		}
 		
 	}
 
 	@Override
-	public void alterarCliente(ContadoCliente cliente)  throws ClienteException {
+	public void alterarCliente(ContadoCliente cliente)  {
 		try {
 			Connection con = Conexao.getConexao();
 
@@ -86,14 +84,14 @@ private static ClienteDao instancia;
 			con.close();
 		} catch (SQLException e) {
 
-			throw new ClienteException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
 		
 	}
 
 	@Override
-	public void deletarCliente(int cliente) throws ClienteException {
+	public void deletarCliente(int cliente) {
 	
 		try {
 			Connection con = Conexao.getConexao();
@@ -110,13 +108,13 @@ private static ClienteDao instancia;
 			con.close();
 		} catch (SQLException e) {
 		    
-			throw new ClienteException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 	}
 
 	@Override
-	public List<ContadoCliente> listaDeContadoCliente()  throws ClienteException{
+	public List<ContadoCliente> listaDeContadoCliente() {
 		ResultSet rs;
 		List<ContadoCliente> lista = new ArrayList<ContadoCliente>();
 		ContadoCliente cliente = null;
@@ -152,12 +150,12 @@ private static ClienteDao instancia;
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			throw new ClienteException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return lista;
 	}
 	@Override
-	public List<ContadoCliente> loginCliente() throws ClienteException {
+	public List<ContadoCliente> loginCliente()  {
 		
 		ResultSet rs;
 		List<ContadoCliente> lista1 = new ArrayList<ContadoCliente>();
@@ -166,9 +164,7 @@ private static ClienteDao instancia;
 		try {
 			Connection con = Conexao.getConexao();
 
-			con.setAutoCommit(false);
-
-			PreparedStatement pStmt = con.prepareStatement("SELECT email, senha FROM ContaUsuario where email =? and senha = ?");
+			PreparedStatement pStmt = con.prepareStatement("SELECT email, senha FROM ContaUsuario");
 
 			rs = pStmt.executeQuery();
 			
@@ -180,11 +176,11 @@ private static ClienteDao instancia;
 				
 				lista1.add(cliente1);
 			}
-			con.commit();
+		
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			throw new ClienteException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return lista1;
 		
