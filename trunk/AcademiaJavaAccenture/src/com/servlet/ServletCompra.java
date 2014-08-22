@@ -17,9 +17,9 @@ import com.fachada.Fachada;
  * Servlet implementation class ServletCompra
  */
 
-@WebService("/ServletCompra")
+//@WebService("/ServletCompra")
 public class ServletCompra extends HttpServlet{
-	private static final long serialVersionUID = 1L;
+	/*	private static final long serialVersionUID = 1L;
 	
 	public ServletCompra() {
         super();
@@ -43,5 +43,5 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		response.sendRedirect("index.jsp");
 	}
-	
+	*/
 }

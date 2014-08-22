@@ -8,13 +8,13 @@ import com.impl.repository.CompraRepositorio;
 
 public class ControllerCompra {
 
-	public void cadastrarCompra(Compra c) throws CompraException{
+	public void cadastrarCompra(Compra compra) throws CompraException{
 		
-		List<Compra> lista = this.listarCompras(c);
+		List<Compra> lista = this.listarCompras(compra);
 		boolean achou = false;
 		
 		for(int i = 0; i< lista.size(); i++){
-			if (lista.get(i).getIdCarrinho().getIdCarrinho() == c.getIdCarrinho().getIdCarrinho()){
+			if (lista.get(i).getIdCarrinho().getIdCarrinho() == compra.getIdCarrinho().getIdCarrinho()){
 				achou = true;
 				break;
 			}
@@ -25,13 +25,13 @@ public class ControllerCompra {
 			throw new CompraException("Este carrinho já está na compra.");
 		}
 		
-		if(c.getDesconto() != "NewToGroup" || c.getDesconto() != "Regular" || c.getDesconto() != "Premium"){
+		if(compra.getDesconto() != "NewToGroup" || compra.getDesconto() != "Regular" || compra.getDesconto() != "Premium"){
 			throw new CompraException("Você não tem desconto disponivel.");
 		}
 		
 		
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
-		dados.novaCompra(c);
+		dados.novaCompra(compra);
 	}
 	
 	public void updateCompra(Compra c) throws CompraException{
