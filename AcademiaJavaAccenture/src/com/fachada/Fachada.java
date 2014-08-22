@@ -38,15 +38,15 @@ public class Fachada {
 	//Métodos de Produto
 	
 	public void inserirProduto(Produto produto){
-		ControlProduto.inserirProduto(produto);
+		this.ControlProduto.inserirProduto(produto);
 	}
 	
 	public void deletarProduto(Produto produto){
-		ControlProduto.deletarProduto(produto);
+		this.ControlProduto.deletarProduto(produto);
 	}
 	
 	public void alterarProduto(Produto produto){
-		ControlProduto.alterarProduto(produto);
+		this.ControlProduto.alterarProduto(produto);
 	}
 	
 	public List<Produto> listaProduto(){
