@@ -3,13 +3,16 @@ package com.fachada;
 import java.util.List;
 
 import com.controller.ControleCliente;
+import com.controller.ControllerCarrinho;
 import com.controller.ControllerCompra;
 import com.controller.ControllerProduto;
+import com.domain.Carrinho;
 import com.domain.Compra;
 import com.domain.Cliente;
 import com.domain.Produto;
 import com.domain.ProdutoCamping;
 import com.domain.ProdutoVestuarioEEngrenagem;
+import com.exceptions.CarrinhoException;
 import com.exceptions.ClienteException;
 import com.exceptions.CompraException;
 
@@ -21,11 +24,13 @@ public class Fachada {
 	private ControllerProduto ControlProduto;
 	private ControllerCompra controllerCompra;
 	private ControleCliente cliente;
+	private ControllerCarrinho controllerCarrinho;
 	
 	public Fachada(){
 		ControlProduto = new ControllerProduto();
 		controllerCompra = new ControllerCompra();
 		cliente = new ControleCliente();
+		controllerCarrinho = new ControllerCarrinho();
 	}
 	
 	public static Fachada getInstancia(){
@@ -113,6 +118,24 @@ public class Fachada {
 		     return cliente.login(c);
 		   
 		}
+		
+		//Métodos do Carrinho
+		
+				public void adicionarCarrinho (Carrinho carrinho) throws CarrinhoException{
+					this.controllerCarrinho.adicionarCarrinho(carrinho);
+				}
+				
+				public void updateCarrinho (Carrinho carrinho) throws CarrinhoException{
+					this.controllerCarrinho.updateCarrinho(carrinho);
+				}
+				
+				public void deletarCarrinho (Carrinho carrinho) throws CarrinhoException{
+					this.controllerCarrinho.deletarCarrinho(carrinho);
+				}	
+				
+				public List<Carrinho> listarCarrinho (Carrinho carrinho){
+					return this.listarCarrinho(carrinho);
+				}	
 		
 		
 	
