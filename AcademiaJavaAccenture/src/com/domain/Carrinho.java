@@ -19,7 +19,7 @@ public class Carrinho {
 	public void setQuantidade(int quantidadeCarrinho) {
 		this.quantidade = quantidadeCarrinho;
 	}
-	public int codCarrinho() {
+	public int getcodCarrinho() {
 		return codCarrinho;
 	}
 	public void setCodCarrinho(int idCarrinho) {
