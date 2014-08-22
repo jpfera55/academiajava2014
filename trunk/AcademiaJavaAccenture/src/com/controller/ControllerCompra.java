@@ -14,7 +14,7 @@ public class ControllerCompra {
 		boolean achou = false;
 		
 		for(int i = 0; i< lista.size(); i++){
-			if (lista.get(i).getIdCarrinho().codCarrinho() == compra.getIdCarrinho().codCarrinho()){
+			if (lista.get(i).getCarrinho().getcodCarrinho() == compra.getCarrinho().getcodCarrinho()){
 				achou = true;
 				break;
 			}
@@ -34,25 +34,25 @@ public class ControllerCompra {
 		dados.novaCompra(compra);
 	}
 	
-	public void updateCompra(Compra c) throws CompraException{
+	public void updateCompra(Compra compra) throws CompraException{
 		
 		
 		
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
-		dados.alterarCompra(c);
+		dados.alterarCompra(compra);
 	}
 	
-	public void deletarCompra(Compra c) throws CompraException{
+	public void deletarCompra(Compra compra) throws CompraException{
 		
 		
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
-		dados.deletarCompra(c);
+		dados.deletarCompra(compra);
 	}
 	
-	public List<Compra> listarCompras(Compra c) throws CompraException{
+	public List<Compra> listarCompras(Compra compra) throws CompraException{
 
 		CompraRepositorio dados = CompraRepositorio.obterInstancia();
-		return dados.listaDeCompra();
+		return dados.listarCompras(compra);
 	}
 	
 }
