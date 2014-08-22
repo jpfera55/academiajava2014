@@ -15,4 +15,11 @@
 	</tr>
 </table>
 </div>
+<div style="background-color: #E0FFFF">
+<table>
+	<tr>
+		<td><a href="formularioProduto.jsp">Cadastro de produto</a></td>
+	</tr>
+</table>
+</div>
 </center>
