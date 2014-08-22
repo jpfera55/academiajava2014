@@ -3,7 +3,7 @@ package com.domain;
 public class Compra {
 
 	private int idCompra;
-	private ContadoCliente Cliente;
+	private Cliente Cliente;
 	private Carrinho Carrinho;
 	private double valorTotal;
 	private String desconto;
@@ -15,10 +15,10 @@ public class Compra {
 	public void setIdCompra(int idCompra) {
 		this.idCompra = idCompra;
 	}
-	public ContadoCliente getCliente() {
+	public Cliente getCliente() {
 		return Cliente;
 	}
-	public void setCliente(ContadoCliente idCliente) {
+	public void setCliente(Cliente idCliente) {
 		this.Cliente = idCliente;
 	}
 	public Carrinho getCarrinho() {
