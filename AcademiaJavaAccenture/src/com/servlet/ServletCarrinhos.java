@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import com.domain.Carrinho;
 import com.fachada.Fachada;
-import com.impl.repository.AdicionarCarrinho;
+import com.impl.repository.CarrinhoRepositorio;
 import com.impl.repository.Conexao;
 
 /**
@@ -58,17 +59,17 @@ public class ServletCarrinhos extends HttpServlet {
 		   
 
 		
-		c.setCodCarrinho(new Integer(request.getParameter("idCarrinho")));
-		c.getProduto().setIdProduto(Integer.parseInt(request.getParameter("idCarrinho")));
-		c.setQuantidade(new Integer(request.getParameter("quantidate")));
-		c.getProduto().setPrecoProduto(Integer.parseInt(request.getParameter("PrecoUnitario")));
-		c.getProduto().setPrecoProduto((Integer.parseInt(request.getParameter("total"))));
+		carrinho.setCodCarrinho(new Integer(request.getParameter("idCarrinho")));
+		carrinho.getProduto().setId(Integer.parseInt(request.getParameter("CodCarrinho")));
+		carrinho.setQuantidade(new Integer(request.getParameter("quantidate")));
+		carrinho.getProduto().setPreco(Integer.parseInt(request.getParameter("PrecoUnitario")));
+		carrinho.getProduto().setPreco(Integer.parseInt(request.getParameter("total")));
 		
 		
 
-		dao.adicionarCarrinho(c);
+		dao.adicionarCarrinho(carrinho);
 		out.println();
-		 response.sendRedirect("index.jsp");
+		 response.sendRedirect("compra.jsp");
 		 
 		 	 
 		} finally {
