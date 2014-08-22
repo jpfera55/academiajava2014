@@ -3,8 +3,8 @@ package com.domain;
 public class Compra {
 
 	private int idCompra;
-	private ContadoCliente idCliente;
-	private Carrinho idCarrinho;
+	private ContadoCliente Cliente;
+	private Carrinho Carrinho;
 	private double valorTotal;
 	private String desconto;
 	
@@ -16,16 +16,16 @@ public class Compra {
 		this.idCompra = idCompra;
 	}
 	public ContadoCliente getIdCliente() {
-		return idCliente;
+		return Cliente;
 	}
 	public void setIdCliente(ContadoCliente idCliente) {
-		this.idCliente = idCliente;
+		this.Cliente = idCliente;
 	}
 	public Carrinho getIdCarrinho() {
-		return idCarrinho;
+		return Carrinho;
 	}
 	public void setIdCarrinho(Carrinho idCarrinho) {
-		this.idCarrinho = idCarrinho;
+		this.Carrinho = idCarrinho;
 	}
 	public double getValorTotal() {
 		return valorTotal;
