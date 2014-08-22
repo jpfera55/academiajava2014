@@ -2,8 +2,10 @@ package com.controller;
 
 import java.util.List;
 
-import com.domain.ContadoCliente;
+import com.domain.Cliente;
 import com.exceptions.ClienteException;
+import com.exceptions.ProdutoDuplicadoException;
+import com.exceptions.ProdutoNuloException;
 import com.impl.repository.ClienteDao;
 import com.impl.repository.ProdutoRepositorio;
 import com.interfaces.repository.InterfaceCliente;
@@ -12,75 +14,47 @@ import com.interfaces.repository.InterfaceProduto;
 /*Érica Rodrigues 20/08*/
 
 public class ControleCliente {
+
 	private InterfaceCliente IntCliente;
-	
-	public ControleCliente(){
+
+	public ControleCliente() {
 		IntCliente = new ClienteDao();
 	}
 
-	public void novoCliente(ContadoCliente c){
-		
-		
-		if (c.getEmail() == null && c.getSenha() != null && c.getEndereço1() == null ) {
-			System.out.println("Preencha os Campos!!!");
-         }
-            else{
+	public void novoCliente(Cliente c) {
+		ClienteDao dados = ClienteDao.obterInstancia();
+		dados.novoCliente(c);
 
-		System.out.println("Conta Criada com Sucesso!!!");
-        }
-	
-		
 	}
-    public void updateCliente(ContadoCliente c) throws ClienteException{
-		
-		
+
+	public void updateCliente(Cliente c) throws ClienteException {
 		ClienteDao dados = ClienteDao.obterInstancia();
 		dados.alterarCliente(c);
 	}
-    public void deletarCliente(ContadoCliente c) throws ClienteException{
-		
-		
+
+	public void deletarCliente(Cliente c) throws ClienteException {
 		ClienteDao dados = ClienteDao.obterInstancia();
 		dados.deletarCliente(c.getId());
 	}
 
-	public List<ContadoCliente> listarContadoCliente(ContadoCliente c) throws ClienteException {
-		
-		ClienteDao dados = ClienteDao.obterInstancia();
-		return dados.listaDeContadoCliente();
-	}
-	
-	public boolean login(ContadoCliente cliente) {
+	public List<Cliente> listarContadoCliente(Cliente c)
+			throws ClienteException {
 
-		List<ContadoCliente> lista;
+		ClienteDao dados = ClienteDao.obterInstancia();
+		return dados.listarCliente();
+	}
+
+	public boolean login(Cliente clienteParametro) {
+		Cliente cliente = null;
 		try {
-			lista = ClienteDao.obterInstancia().loginCliente();
-			 for(int i = 0; i< lista.size(); i++){
-				 
-					if (lista.get(i).getEmail().equals(cliente.getEmail()) && lista.get(i).getSenha().equals(cliente.getSenha())) {
-						
-						return true;
-					
-						//				throw new ClienteException("Conexao realizado com Sucesso");	
-					}	else{
-						//	throw new ClienteException(" Usuario não Encontrato");
-						
-					}
-				
-				}
-		} catch (Exception e) {
-			
+			cliente = ClienteDao.obterInstancia().loginCliente(clienteParametro.getEmail(),clienteParametro.getSenha());
+			if(cliente != null){
+				return true;
+			}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	
-	
-		
-		return false;	
-	
-      
-		
+		return false;
 	}
-		
-	
-	
+
 }
