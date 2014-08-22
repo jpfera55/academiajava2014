@@ -8,27 +8,27 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.domain.ItensCarrinho;
+import com.domain.Carrinho;
 import com.exceptions.CarrinhoException;
 import com.interfaces.repository.InterfaceCarrinho;
 import com.mysql.jdbc.PreparedStatement;
 
-public class AdicionaCarrinhoAction implements InterfaceCarrinho {
+public class CarrinhoRepositorio implements InterfaceCarrinho {
 
 	// Adiciona itens no carrinho
-	private static AdicionaCarrinhoAction istancia;
+	private static AdicionarCarrinho istancia;
 
-	public static AdicionaCarrinhoAction obterEstancia() {
+	public static AdicionarCarrinho obterEstancia() {
 
 		if (istancia == null) {
-			istancia = new AdicionaCarrinhoAction();
+			istancia = new AdicionarCarrinho();
 		}
 
 		return istancia;
 	}
 
 	@Override
-	public void adicionarCarrinho(ItensCarrinho ic){
+	public void adicionarCarrinho(Carrinho ic){
 
 		try {
 
@@ -37,9 +37,9 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 			
 			java.sql.PreparedStatement pStmt = con.prepareStatement("INSERT INTO CARRINHO (id_carrinho,quantidade,product_id) VALUE (?,?,?)");
 
-			pStmt.setInt(1, ic.getIdCarrinho());
-			pStmt.setInt(3, ic.getQuantidadeCarrinho());
-			pStmt.setInt(2, ic.getProdutoCarrinho().getIdProduto());
+			pStmt.setInt(1, ic.codCarrinho());
+			pStmt.setInt(3, ic.getQuantidade());
+			pStmt.setInt(2, ic.getProduto().getId());
 
 			pStmt.executeUpdate();
 			con.commit();
@@ -52,16 +52,16 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 	}
 
 	@Override
-	public void updateCarrinho(ItensCarrinho ic) {
+	public void updateCarrinho(Carrinho ic) {
 		try {
 			Connection con = Conexao.getConexao();
 			con.setAutoCommit(false);
 			java.sql.PreparedStatement pStmt = con
 					.prepareStatement("UPDATE CARRINHO SET id_carrinho=?,quantidade=?,product_id=? WHERE id_carrinho=?");
 
-			pStmt.setInt(1, ic.getIdCarrinho());
-			pStmt.setInt(2, ic.getQuantidadeCarrinho());
-			pStmt.setInt(3, ic.getProdutoCarrinho().getIdProduto());
+			pStmt.setInt(1, ic.codCarrinho());
+			pStmt.setInt(2, ic.getQuantidade());
+			pStmt.setInt(3, ic.getProduto().getId());
 
 			pStmt.executeUpdate();
 			con.commit();
@@ -74,14 +74,14 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 	}
 
 	@Override
-	public void removerCarrinho(ItensCarrinho ic)  throws CarrinhoException{
+	public void removerCarrinho(Carrinho ic)  throws CarrinhoException{
 		try {
 			Connection con = Conexao.getConexao();
 			con.setAutoCommit(false);
 			java.sql.PreparedStatement pStmt = con
 					.prepareStatement("DELETE FROM CARRINHO WHERE id_carrinho=?");
 
-			pStmt.setInt(1, ic.getIdCarrinho());
+			pStmt.setInt(1, ic.codCarrinho());
 
 			pStmt.executeUpdate();
 			con.commit();
@@ -93,10 +93,10 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 	}
 
 	@Override
-	public List<ItensCarrinho> listarCarrinho()  throws CarrinhoException{
+	public List<Carrinho> listarCarrinho()  throws CarrinhoException{
 		ResultSet rs;
-		List<ItensCarrinho> lista = new ArrayList<ItensCarrinho>();
-		ItensCarrinho itens = null;
+		List<Carrinho> lista = new ArrayList<Carrinho>();
+		Carrinho itens = null;
 		
 		try {
 			Connection con = Conexao.getConexao();
@@ -108,10 +108,10 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 			rs = pStmt.executeQuery();
 			
 			while (rs.next()) {
-			ItensCarrinho carrinho = new ItensCarrinho();
-			carrinho.setIdCarrinho(rs.getInt("id_carrinho"));
-			carrinho.setQuantidadeCarrinho(rs.getInt("quantidade"));
-			carrinho.getProdutoCarrinho().setIdProduto(rs.getInt("Product_id"));
+			Carrinho carrinho = new Carrinho();
+			carrinho.setCodCarrinho(rs.getInt("id_carrinho"));
+			carrinho.setQuantidade(rs.getInt("quantidade"));
+			carrinho.getProduto().setId(id);(rs.getInt("Product_id"));
 			
 			lista.add(carrinho);
 			}

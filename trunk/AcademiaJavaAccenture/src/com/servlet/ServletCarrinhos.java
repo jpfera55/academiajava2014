@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-import com.domain.ItensCarrinho;
+import com.domain.Carrinho;
 import com.fachada.Fachada;
-import com.impl.repository.AdicionaCarrinhoAction;
+import com.impl.repository.AdicionarCarrinho;
 import com.impl.repository.Conexao;
 
 /**
@@ -53,16 +53,16 @@ public class ServletCarrinhos extends HttpServlet {
 		try{
 
 		    Conexao con = new Conexao();
-		    AdicionaCarrinhoAction  dao = new AdicionaCarrinhoAction ();
-		   ItensCarrinho  c = new ItensCarrinho();
+		    AdicionarCarrinho  dao = new AdicionarCarrinho ();
+		   Carrinho  c = new Carrinho();
 		   
 
 		
-		c.setIdCarrinho(new Integer(request.getParameter("idCarrinho")));
-		c.getProdutoCarrinho().setIdProduto(Integer.parseInt(request.getParameter("idCarrinho")));
-		c.setQuantidadeCarrinho(new Integer(request.getParameter("quantidate")));
-		c.getProdutoCarrinho().setPrecoProduto(Integer.parseInt(request.getParameter("PrecoUnitario")));
-		c.getProdutoCarrinho().setPrecoProduto((Integer.parseInt(request.getParameter("total"))));
+		c.setCodCarrinho(new Integer(request.getParameter("idCarrinho")));
+		c.getProduto().setIdProduto(Integer.parseInt(request.getParameter("idCarrinho")));
+		c.setQuantidade(new Integer(request.getParameter("quantidate")));
+		c.getProduto().setPrecoProduto(Integer.parseInt(request.getParameter("PrecoUnitario")));
+		c.getProduto().setPrecoProduto((Integer.parseInt(request.getParameter("total"))));
 		
 		
 
