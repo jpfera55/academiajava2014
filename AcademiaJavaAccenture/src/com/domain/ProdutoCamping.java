@@ -1,6 +1,6 @@
 package com.domain;
 
-//Bruno Monteiro -- 18/08/2014
+//Bruno Monteiro -- 18/08/2014 -- Verificado
 
 public class ProdutoCamping extends Produto {
 	

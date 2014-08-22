@@ -13,7 +13,7 @@ import com.domain.ProdutoVestuarioEEngrenagem;
 import com.exceptions.ProdutoComOIdZerado;
 import com.interfaces.repository.InterfaceProduto;
 
-//Bruno Monteiro -- 18/11/2014
+//Bruno Monteiro -- 18/11/2014 -- Verificado
 
 public class ProdutoRepositorio implements InterfaceProduto {
 
