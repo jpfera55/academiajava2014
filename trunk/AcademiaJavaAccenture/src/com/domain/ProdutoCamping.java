@@ -4,15 +4,15 @@ package com.domain;
 
 public class ProdutoCamping extends Produto {
 	
+	private int idCamping;
 	private String registroDaAgenciaAmbiental;
-	private int idProdutoCamping;
 	
-	public int getIdProdutoCamping() {
-		return idProdutoCamping;
+	public int getIdCamping() {
+		return idCamping;
 	}
 
-	public void setIdProdutoCamping(int idProdutoCamping) {
-		this.idProdutoCamping = idProdutoCamping;
+	public void setIdCamping(int idCamping) {
+		this.idCamping = idCamping;
 	}
 
 	public String getRegistroDaAgenciaAmbiental() {

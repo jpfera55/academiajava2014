@@ -42,10 +42,10 @@ public class ServletProduto extends HttpServlet {
 		
 		Produto p = new Produto();
 		
-		p.setNomeProduto(request.getParameter("nomeProduto"));
-		p.setDescricaoProduto(request.getParameter("descricaoProduto"));
-		p.setPrecoProduto(new Float(request.getParameter("precoProduto")));
-		p.setTipoProduto(request.getParameter("tipoProduto"));
+		p.setNome(request.getParameter("nomeProduto"));
+		p.setDescricao(request.getParameter("descricaoProduto"));
+		p.setPreco(new Float(request.getParameter("precoProduto")));
+		p.setTipo(request.getParameter("tipoProduto"));
 		
 		Fachada.getInstancia().inserirProduto(p);
 		

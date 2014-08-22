@@ -26,8 +26,8 @@ public class ControllerCarrinho {
 		}
 
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getProdutoCarrinho().getIdProduto() == c
-					.getProdutoCarrinho().getIdProduto()) {
+			if (lista.get(i).getProdutoCarrinho().getId() == c
+					.getProdutoCarrinho().getId()) {
 				encontrou = true;
 				break;
 			}
@@ -62,8 +62,8 @@ public class ControllerCarrinho {
 		}
 
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getProdutoCarrinho().getIdProduto() == c
-					.getProdutoCarrinho().getIdProduto()) {
+			if (lista.get(i).getProdutoCarrinho().getId() == c
+					.getProdutoCarrinho().getId()) {
 				encontrou = true;
 				break;
 			}

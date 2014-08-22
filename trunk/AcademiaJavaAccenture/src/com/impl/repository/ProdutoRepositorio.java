@@ -27,11 +27,11 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt = con.prepareStatement("INSERT INTO PRODUTO (product_name, product_description, "
 			+ "product_image, product_price, product_type) VALUE (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 
-			pStmt.setString(1, produto.getNomeProduto());
-			pStmt.setString(2, produto.getDescricaoProduto());
-			pStmt.setString(3, produto.getImagemProduto());
-			pStmt.setFloat(4, produto.getPrecoProduto());
-			pStmt.setString(5, produto.getTipoProduto());
+			pStmt.setString(1, produto.getNome());
+			pStmt.setString(2, produto.getDescricao());
+			pStmt.setString(3, produto.getImagem());
+			pStmt.setFloat(4, produto.getPreco());
+			pStmt.setString(5, produto.getTipo());
 			
 			pStmt.executeUpdate();
 			
@@ -51,8 +51,8 @@ public class ProdutoRepositorio implements InterfaceProduto {
 				"(product_id, product_size, product_color) VALUE (?,?,?)");
 
 				pStmt.setInt(1, chavePrimariaInserida);
-				pStmt.setString(2, ((ProdutoVestuarioEEngrenagem) produto).getTamanhoProduto());
-				pStmt.setString(3, ((ProdutoVestuarioEEngrenagem) produto).getCorProduto());
+				pStmt.setString(2, ((ProdutoVestuarioEEngrenagem) produto).getTamanho());
+				pStmt.setString(3, ((ProdutoVestuarioEEngrenagem) produto).getCor());
 
 				pStmt.executeUpdate();
 			}
@@ -77,12 +77,12 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			pStmt = con.prepareStatement("UPDATE PRODUTO SET product_name = ?, "
 			+ "product_description = ?, product_image = ?, product_price = ?, product_type = ? WHERE product_id = ?");
 
-			pStmt.setString(1, produto.getNomeProduto());
-			pStmt.setString(2, produto.getDescricaoProduto());
-			pStmt.setString(3, produto.getImagemProduto());
-			pStmt.setFloat(4, produto.getPrecoProduto());
-			pStmt.setString(5, produto.getTipoProduto());
-			pStmt.setInt(6, produto.getIdProduto());
+			pStmt.setString(1, produto.getNome());
+			pStmt.setString(2, produto.getDescricao());
+			pStmt.setString(3, produto.getImagem());
+			pStmt.setFloat(4, produto.getPreco());
+			pStmt.setString(5, produto.getTipo());
+			pStmt.setInt(6, produto.getId());
 
 			pStmt.executeUpdate();
 			
@@ -92,18 +92,18 @@ public class ProdutoRepositorio implements InterfaceProduto {
 				+ "Product_registraction = ? WHERE product_id = ? and Id_produtoCamping = ?");
 
 				pStmt.setString(1, ((ProdutoCamping) produto).getRegistroDaAgenciaAmbiental());
-				pStmt.setInt(2, produto.getIdProduto());
-				pStmt.setInt(3, ((ProdutoCamping) produto).getIdProdutoCamping());
+				pStmt.setInt(2, produto.getId());
+				pStmt.setInt(3, ((ProdutoCamping) produto).getIdCamping());
 
 				pStmt.executeUpdate();	
 			}else if(produto instanceof ProdutoVestuarioEEngrenagem){
 				pStmt = con.prepareStatement("UPDATE produtoapparel SET "
 				+ "Product_Size = ?, Product_Color = ? WHERE product_id = ? and Id_produtoApparel = ?");
 
-				pStmt.setString(1, ((ProdutoVestuarioEEngrenagem) produto).getTamanhoProduto());
-				pStmt.setString(2, ((ProdutoVestuarioEEngrenagem) produto).getCorProduto());
-				pStmt.setInt(3, produto.getIdProduto());
-				pStmt.setInt(4, ((ProdutoVestuarioEEngrenagem) produto).getIdProdutoVestuarioEEngrenagem());
+				pStmt.setString(1, ((ProdutoVestuarioEEngrenagem) produto).getTamanho());
+				pStmt.setString(2, ((ProdutoVestuarioEEngrenagem) produto).getCor());
+				pStmt.setInt(3, produto.getId());
+				pStmt.setInt(4, ((ProdutoVestuarioEEngrenagem) produto).getIdVestuarioEEngrenagem());
 
 				pStmt.executeUpdate();
 			}
@@ -128,13 +128,13 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			if(produto instanceof ProdutoCamping){
 				pStmt = con.prepareStatement("DELETE FROM produtocamping WHERE product_id = ?");
 
-				pStmt.setInt(1, produto.getIdProduto());
+				pStmt.setInt(1, produto.getId());
 				
 				pStmt.executeUpdate();
 			}else if (produto instanceof ProdutoVestuarioEEngrenagem){
 				pStmt = con.prepareStatement("DELETE FROM produtoapparel WHERE product_id = ?");
 
-				pStmt.setInt(1, produto.getIdProduto());
+				pStmt.setInt(1, produto.getId());
 				
 				pStmt.executeUpdate();	
 			}
@@ -142,7 +142,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			//Produto
 			pStmt = con.prepareStatement("DELETE FROM PRODUTO WHERE product_id = ?");
 			
-			pStmt.setInt(1, produto.getIdProduto());
+			pStmt.setInt(1, produto.getId());
 			
 			pStmt.executeUpdate();
 			
@@ -202,7 +202,7 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			while (rs.next()) {
 				produtoCamping = (ProdutoCamping) camposEmComum(rs);
 				
-				produtoCamping.setIdProdutoCamping(rs.getInt("Id_produtoCamping"));
+				produtoCamping.setIdCamping(rs.getInt("Id_produtoCamping"));
 				produtoCamping.setRegistroDaAgenciaAmbiental(rs.getString("Product_registraction"));
 
 				lista.add(produtoCamping);
@@ -235,9 +235,9 @@ public class ProdutoRepositorio implements InterfaceProduto {
 			while (rs.next()) {
 				produtoVestuarioEEngrenagem = (ProdutoVestuarioEEngrenagem) camposEmComum(rs);
 				
-				produtoVestuarioEEngrenagem.setIdProdutoVestuarioEEngrenagem(rs.getInt("Id_produtoApparel"));
-				produtoVestuarioEEngrenagem.setCorProduto(rs.getString("Product_Color"));
-				produtoVestuarioEEngrenagem.setTamanhoProduto(rs.getString("Product_Size"));
+				produtoVestuarioEEngrenagem.setIdVestuarioEEngrenagem(rs.getInt("Id_produtoApparel"));
+				produtoVestuarioEEngrenagem.setCor(rs.getString("Product_Color"));
+				produtoVestuarioEEngrenagem.setTamanho(rs.getString("Product_Size"));
 
 				lista.add(produtoVestuarioEEngrenagem);
 			}
@@ -311,12 +311,12 @@ public class ProdutoRepositorio implements InterfaceProduto {
 	public Produto camposEmComum(ResultSet rs) throws SQLException{
 		Produto produto = new Produto();
 		
-		produto.setIdProduto(rs.getInt("product_id"));
-		produto.setNomeProduto(rs.getString("product_name"));
-		produto.setDescricaoProduto(rs.getString("product_description"));
-		produto.setImagemProduto(rs.getString("product_image"));
-		produto.setPrecoProduto(rs.getFloat("product_price"));
-		produto.setTipoProduto(rs.getString("product_type"));
+		produto.setId(rs.getInt("product_id"));
+		produto.setNome(rs.getString("product_name"));
+		produto.setDescricao(rs.getString("product_description"));
+		produto.setImagem(rs.getString("product_image"));
+		produto.setPreco(rs.getFloat("product_price"));
+		produto.setTipo(rs.getString("product_type"));
 		
 		return produto;
 	}
