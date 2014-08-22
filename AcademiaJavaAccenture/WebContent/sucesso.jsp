@@ -13,12 +13,12 @@
 
 				<tr>
 
-					<td colspan="5"><h2> Login Realizado com Sucesso! </h2></td>
+					<td colspan="5"><h2><center> Login Realizado com Sucesso! </center></h2></td>
 
 				</tr>
 
 				<tr>
-					<td><a href="menu.jsp">Ir para Menu Principal</a></td>
+					<td><a href="menu.jsp"><center>Ir para Menu Principal</center></a></td>
 				
 				</tr>
 
