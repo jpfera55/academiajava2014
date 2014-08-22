@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.domain.ContadoCliente;
+import com.domain.Cliente;
+import com.fachada.Fachada;
 import com.impl.repository.ClienteDao;
 import com.impl.repository.Conexao;
 
 @WebServlet("/ServletCliente")
-public class ServletCliente extends HttpServlet {
+public class ServletCadastrodeCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCliente() {
+    public ServletCadastrodeCliente() {
+    	
         super();
      
     }
@@ -46,14 +48,13 @@ public class ServletCliente extends HttpServlet {
 		
 		try{
 
-		   Conexao con = new Conexao();
-		   ClienteDao dao = new ClienteDao();
-		   ContadoCliente cliente = new ContadoCliente();
+		 
+		   Cliente cliente = new Cliente();
 		   
 		   cliente.setNome(request.getParameter("nome"));
 		   cliente.setSobrenome(request.getParameter("sobrenome"));
-		   cliente.setEndereço1(request.getParameter("endereco1"));
-		   cliente.setEndereço2(request.getParameter("endereco2"));
+		   cliente.setEndereçoPrincipal(request.getParameter("endereco1"));
+		   cliente.setEndereçoAlternativo(request.getParameter("endereco2"));
 		   cliente.setCidade(request.getParameter("cidade"));
 		   cliente.setEstado(request.getParameter("estado"));
 		   cliente.setCep(request.getParameter("cep"));
@@ -61,7 +62,7 @@ public class ServletCliente extends HttpServlet {
 		   cliente.setSenha(request.getParameter("senha"));
 		   cliente.setEmail(request.getParameter("email"));
 		   
-		   dao.novoCliente(cliente);
+		   Fachada.getInstancia().novoCliente(cliente);
 
 
 		   response.sendRedirect("login.jsp");
