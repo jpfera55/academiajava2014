@@ -28,7 +28,7 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 	}
 
 	@Override
-	public void adicionarCarrinho(ItensCarrinho ic) throws CarrinhoException{
+	public void adicionarCarrinho(ItensCarrinho ic){
 
 		try {
 
@@ -46,13 +46,13 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			throw new CarrinhoException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
 	}
 
 	@Override
-	public void updateCarrinho(ItensCarrinho ic)  throws CarrinhoException{
+	public void updateCarrinho(ItensCarrinho ic) {
 		try {
 			Connection con = Conexao.getConexao();
 			con.setAutoCommit(false);
@@ -68,7 +68,7 @@ public class AdicionaCarrinhoAction implements InterfaceCarrinho {
 			pStmt.close();
 			con.close();
 		} catch (SQLException e) {
-			throw new CarrinhoException(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
 	}
