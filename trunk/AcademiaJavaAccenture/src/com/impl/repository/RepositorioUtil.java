@@ -8,19 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.domain.Produto;
+import com.exceptions.MensagemErro;
+import com.exceptions.ProdutoComOIdZerado;
 
 //Bruno Monteiro -- 19/08/2014
 
 public class RepositorioUtil {
 	
-	public static int retornarChavePrimariaInserida(ResultSet rs){
-		try {
-			rs.next();
+	public static int retornarChavePrimariaInserida(ResultSet rs) throws SQLException, ProdutoComOIdZerado{
+		rs.next();
+		int idRetornado = rs.getInt(1);
+		if(idRetornado != 0){
 			return rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		}else{
+			throw new ProdutoComOIdZerado(MensagemErro.ERRO_PRODUTO_ID_ZERADO.getMsg());
 		}
-		return 0;
 	}
 	
 	public static List<String> listarTiposDePorudto(){
