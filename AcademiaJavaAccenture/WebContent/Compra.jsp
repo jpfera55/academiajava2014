@@ -31,15 +31,19 @@
 
 
 
-				<% Fachada f = new Fachada();%>
 				<% Compra c = new Compra(); %>
-				<%List<Compra>ListaCompra;%>
-				<%ListaCompra = f.listarCompras(c);%>	
+				
+				
+				
+				 <%c.getIdCarrinho().setIdCarrinho(1);%>
+				 <%c.getIdCliente().setNome("Antony");%>
+				 
+				
+				<%List<Compra> ListaCompra;%>
+				<%ListaCompra = Fachada.getInstancia().listarCompras(c);%>	
 				<!-- 
 				Mudar ao terminar a parte de carrinho
 				 -->
-				 <% %>
-				 
 				 
 				<!-- 
 				Mudar ao terminar a parte de carrinho

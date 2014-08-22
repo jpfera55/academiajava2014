@@ -31,10 +31,10 @@
 					for (Produto produto : lista) {
 				%>
 				<tr>
-					<td><%=produto.getIdProduto()%></td>
-					<td><%=produto.getNomeProduto()%></td>
-					<td><%=produto.getDescricaoProduto()%></td>
-					<td>R$<%=produto.getPrecoProduto()%></td>
+					<td><%=produto.getId()%></td>
+					<td><%=produto.getNome()%></td>
+					<td><%=produto.getDescricao()%></td>
+					<td>R$<%=produto.getPreco()%></td>
 					<td><img alt="Mais informações>" src="Imagens/plus.png">
 					<td><img alt="Adicionar ao carrinho" src="Imagens/carrinho.png">
 				</tr>

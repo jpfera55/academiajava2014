@@ -4,49 +4,49 @@ package com.domain;
 
 public class Produto {
 	
-	private int idProduto;
-	private String nomeProduto;
-	private String descricaoProduto;
-	private String imagemProduto;
-	private float precoProduto;
-	private String tipoProduto;
+	private int id;
+	private String nome;
+	private String descricao;
+	private String imagem;
+	private float preco;
+	private String tipo;
 	
 	
-	public int getIdProduto() {
-		return idProduto;
+	public int getId() {
+		return id;
 	}
-	public void setIdProduto(int idProduto) {
-		this.idProduto = idProduto;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getNomeProduto() {
-		return nomeProduto;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getDescricaoProduto() {
-		return descricaoProduto;
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setDescricaoProduto(String descricaoProduto) {
-		this.descricaoProduto = descricaoProduto;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	public String getImagemProduto() {
-		return imagemProduto;
+	public String getImagem() {
+		return imagem;
 	}
-	public void setImagemProduto(String imagemProduto) {
-		this.imagemProduto = imagemProduto;
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
-	public float getPrecoProduto() {
-		return precoProduto;
+	public float getPreco() {
+		return preco;
 	}
-	public void setPrecoProduto(float precoProduto) {
-		this.precoProduto = precoProduto;
+	public void setPreco(float preco) {
+		this.preco = preco;
 	}
-	public String getTipoProduto() {
-		return tipoProduto;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setTipoProduto(String tipoProduto) {
-		this.tipoProduto = tipoProduto;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }
