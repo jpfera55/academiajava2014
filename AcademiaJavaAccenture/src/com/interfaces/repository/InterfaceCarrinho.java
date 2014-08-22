@@ -7,7 +7,7 @@ import com.exceptions.CarrinhoException;
 
 public interface InterfaceCarrinho {
 	
-	public void adicionarCarrinho(ItensCarrinho ic) throws CarrinhoException;
+	public void adicionarCarrinho(ItensCarrinho ic) ;
 	public void updateCarrinho (ItensCarrinho ic) throws CarrinhoException;
 	public void removerCarrinho (ItensCarrinho ic) throws CarrinhoException;
 	public List <ItensCarrinho> listarCarrinho () throws CarrinhoException;
