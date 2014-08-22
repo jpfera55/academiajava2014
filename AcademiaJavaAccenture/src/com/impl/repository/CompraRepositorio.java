@@ -34,7 +34,7 @@ public class CompraRepositorio implements InterfaceCompra{
 
 			pStmt.setInt(1, c.getIdCliente().getId());
 			pStmt.setInt(2, c.getIdCarrinho().getIdCarrinho());
-			pStmt.setFloat(3, c.getValorTotal());
+			pStmt.setDouble(3, c.getValorTotal());
 			pStmt.setString(4, c.getDesconto());
 
 			pStmt.executeUpdate();
@@ -59,7 +59,7 @@ public class CompraRepositorio implements InterfaceCompra{
 
 			pStmt.setInt(1, c.getIdCliente().getId());
 			pStmt.setInt(2, c.getIdCarrinho().getIdCarrinho());
-			pStmt.setFloat(3, c.getValorTotal());
+			pStmt.setDouble(3, c.getValorTotal());
 			pStmt.setString(4, c.getDesconto());
             pStmt.setInt(5, c.getIdCompra());
 			
@@ -106,18 +106,20 @@ public class CompraRepositorio implements InterfaceCompra{
 
 			con.setAutoCommit(false);
 
-			PreparedStatement pStmt = con.prepareStatement("SELECT * FROM Compra");
+			PreparedStatement pStmt = con.prepareStatement("select compra.ID, contausuario.Nome, compra.PrecoTotal, compra.TipoDescontocontausuario from compra inner join contausuario on compra.ID_ContaUsuario = ? inner join carrinho on compra.ID_carrinho = ?;");
 
+			pStmt.setString(1, compra.getIdCliente().getNome());
+			pStmt.setInt(2, compra.getIdCarrinho().getIdCarrinho());
+			
 			rs = pStmt.executeQuery();
 			
 			while (rs.next()) {
 				compra = new Compra();
 				
 				compra.setIdCompra(rs.getInt("ID"));
-				compra.getIdCliente().setId(rs.getInt("ID_ContaUsuario"));
-				compra.getIdCarrinho().setIdCarrinho(rs.getInt("ID_carrinho"));
-				compra.setValorTotal(rs.getFloat("PrecoTotal"));
-				compra.setDesconto(rs.getString("TipoDesconto"));
+				compra.getIdCliente().setNome(rs.getString("Nome"));
+				compra.getIdCarrinho().setIdCarrinho(rs.getInt("PrecoTotal"));
+				compra.setDesconto(rs.getString("TipoDescontocontausuario"));
 				
 				lista.add(compra);
 			}

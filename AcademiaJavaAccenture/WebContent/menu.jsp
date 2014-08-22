@@ -7,11 +7,13 @@
 <div style="background-color: #C6E2FF;">
 <table>
 	<tr>
-		<td><a href="produtoVestuario.jsp"> Vestuário </a>|</td>
-		<td><a href="produtoEngrenagem.jsp"> Engrenagem </a>|</td>
-		<td><a href="produtoAcessorios.jsp"> Acessórios de camping </a>|</td>
-		<td><a href="produtoLivros.jsp"> Livros </a>|</td>
-		<td><a href="produtoAudioVideo.jsp"> Áudios / Vídeos</a>|</td>
+		<td><a href="produtoVestuario.jsp"> Vestuário </a> | </td>
+		<td><a href="produtoEngrenagem.jsp"> Engrenagem </a> | </td>
+		<td><a href="produtoAcessorios.jsp"> Acessórios de camping </a> | </td>
+		<td><a href="produtoLivros.jsp"> Livros </a> | </td>
+		<td><a href="produtoAudioVideo.jsp"> Áudios / Vídeos</a> | </td>
+		<td><a href="Compra.jsp"> Compra </a> | </td> 
+		
 	</tr>
 </table>
 </div>
