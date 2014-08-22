@@ -7,10 +7,11 @@ import com.exceptions.CompraException;
 
 public interface InterfaceCompra {
 
-	public void novaCompra(Compra c) throws CompraException;
-	public void alterarCompra(Compra c) throws CompraException;
-	public void deletarCompra(Compra c) throws CompraException;
-	public List<Compra> listaDeCompra() throws CompraException;
+	public void novaCompra(Compra compra) throws CompraException;
+	public void alterarCompra(Compra compra) throws CompraException;
+	public void deletarCompra(Compra compra) throws CompraException;
+	public List<Compra> listarCompras(Compra compra) throws CompraException;
+	public List<Compra> listarCompraEspecifica(Compra compra) throws CompraException;
 	
 	
 }
